@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bar</title>
+  <link rel="stylesheet" href="stile.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER + NAVIGAZIONE
+============================================================ -->
+<header class="dark-header">
+  <div class="logo">
+    <img src="logo.png" alt="Logo Bar">
+    <h1>Bar Nome</h1>
+  </div>
+  <nav class="desktop-nav">
+    <a href="#chi-siamo">Chi Siamo</a>
+    <a href="#menu">Menu</a>
+    <a href="#galleria">Galleria</a>
+    <a href="#prenota">Prenota</a>
+    <a href="#contatti">Contatti</a>
+  </nav>
+  <button id="menuButton" aria-label="Menu">&#9776;</button>
+
+<div class="floating-socials">
+  <a href="https://wa.me/391234567890?text=Ciao%20vorrei%20prenotare%20un%20tavolo%20per%20stasera!" 
+     class="social-btn whatsapp" 
+     target="_blank" 
+     aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+   <span class="tooltip-text">WhatsApp</span>
+  </a>
+
+  <a href="https://www.instagram.com/iltuoaccount" 
+     class="social-btn instagram" 
+     target="_blank" 
+     aria-label="Instagram">
+    <i class="fab fa-instagram"></i>
+   <span class="tooltip-text">Instagram</span>
+  </a>
+
+  <a href="https://www.facebook.com/iltuoaccount" 
+     class="social-btn facebook" 
+     target="_blank" 
+     aria-label="Facebook">
+    <i class="fab fa-facebook-f"></i>
+   <span class="tooltip-text">Facebook</span>
+  </a>
+</div>
+
+
+
+
+
+
+</header>
+
+<!-- ============================================================
+     SEZIONE HERO CON SLIDESHOW AUTOMATICO
+============================================================ -->
+<section class="hero-slideshow">
+  <div class="hero-image" id="heroImage"></div>
+</section>
+
+
+<!-- ============================================================
+     SEZIONE CHI SIAMO CON FACCIA E NUVOLETTA
+============================================================ -->
+<section id="chi-siamo" class="chi-siamo-section">
+  <div class="chi-siamo-bg">
+   <div class="cloud-box">
+  <h2>Chi Siamo</h2>
+  <p>
+    Siamo una caffetteria accogliente a conduzione familiare. Amiamo il profumo del caffè al mattino,
+    i sorrisi dei clienti e le chiacchiere sincere.
+  </p>
+  <button class="popup-btn" onclick="togglePopup()">La nostra storia</button>
+</div>
+
+<!-- POPUP -->
+<div class="popup-overlay" id="popupOverlay">
+  <div class="popup-content">
+    <span class="close-btn" onclick="togglePopup()">&times;</span>
+    <h3>La nostra storia</h3>
+    <p>
+      Il nostro bar nasce nel cuore del quartiere nel 1985, da un sogno di famiglia: creare un luogo dove
+      il caffè avesse l’odore di casa e il sorriso fosse il benvenuto. Da allora serviamo ogni tazzina con
+      lo stesso amore e cura.
+    </p>
+  </div>
+</div>
+
+  </div>
+</section>
+
+<script>
+  function togglePopup() {
+    const popup = document.getElementById("popupOverlay");
+    popup.style.display = popup.style.display === "flex" ? "none" : "flex";
+  }
+</script>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const heroImages = ['caffe.jpg', 'esterno.jpg', 'Aperitivo.jpg']; // le tue immagini
+    let index = 0;
+    const hero = document.getElementById('heroImage');
+
+    function changeHeroImage() {
+      hero.style.backgroundImage = `url('${heroImages[index]}')`;
+      index = (index + 1) % heroImages.length;
+    }
+
+    changeHeroImage();
+    setInterval(changeHeroImage, 5000);
+  });
+</script>
+
+
+<!-- ============================================================
+     HERO SPLIT: CHI SIAMO A SINISTRA + SPECIALITÀ A DESTRA
+============================================================ -->
+<!--<section id="chi-siamo" class="hero-section">
+  <div class="hero-overlay animated-content">
+    <h2>Chi Siamo</h2>
+    <p>Siamo un bar a conduzione familiare con passione per il buon cibo, il caffè e le persone. Ogni cliente per noi è di casa.</p>
+ 
+
+ <h2>Il nostro Menù</h2>
+  <div class="menu-preview" onclick="toggleMenu()">
+    <p>Clicca qui per vedere il QR code </p>
+    <div class="menu-img" id="menuImage">
+   <p>Scansiona il QR code per scaricare il menù completo in PDF</p>
+  <img src="path-to-your-qr-code.png" alt="QR code per scaricare il menù PDF" style="max-width:200px; cursor:pointer;" onclick="window.open('link-al-pdf.pdf', '_blank')" />
+  </div>
+  </div>
+      </div>
+    </div>
+  </div>
+
+</section>-->
+
+<!--<section id="chi-siamo" class="hero-section">
+  <div class="hero-overlay animated-content" style="border-radius: 60px; transition: border-radius 0.3s ease;">
+    <h2>Chi Siamo</h2>
+    <p>Siamo un bar a conduzione familiare con passione per il buon cibo, il caffè e le persone. Ogni cliente per noi è di casa.</p>
+
+    <h2>Il nostro Menù</h2>
+    <div class="menu-preview">
+      <button id="toggleMenuBtn" style="cursor:pointer; margin-bottom: 1rem;">Clicca qui per vedere il QR code</button>
+      
+      <div class="menu-img" id="menuImage" style="display:none;">
+        <p>Scansiona il QR code per scaricare il menù completo in PDF</p>
+        <img src="path-to-your-qr-code.png" alt="QR code per scaricare il menù PDF" style="max-width:200px; cursor:pointer;" 
+          onclick="window.open('link-al-pdf.pdf', '_blank')" />
+      </div>
+    </div>
+
+    <label for="radiusRange" style="display:block; margin-top: 1rem;">Regola angoli (border-radius):</label>
+    <input type="range" id="radiusRange" min="0" max="100" value="25" />
+  </div>
+</section> -->
+
+
+
+
+
+
+
+
+<!-- ============================================================
+     SEZIONE MENU CON 3 COLONNE
+============================================================ -->
+
+<section class="menu-3-colonne">
+  <h2>Scopri le nostre specialità</h2>
+   <div class="menu-grid">
+   <a href="#colazioni" class="menu-box" id="colazioniBox">
+
+      <div class="menu-img slider-img" id="colazioniImg"></div>
+       <h3>Colazioni</h3>
+      <div class="arrow-container">
+        <button class="arrow-btn" id="prevColazione">&#9664;</button> <!-- ◀ -->
+       <button class="arrow-btn" id="nextColazione">&#9654;</button> <!-- ▶ -->
+     </div>
+    </a>
+
+  <!-- <script>
+  const images = [
+    'colazione.jpg',
+    'caffe.jpg',
+    'gru.jpg'
+  ];
+
+  let currentIndex = 0;
+  const imgEl = document.getElementById('colazioniImg');
+  const nextBtn = document.getElementById('nextColazione');
+  const prevBtn = document.getElementById('prevColazione');
+
+  function updateImage() {
+    imgEl.style.backgroundImage = `url('${images[currentIndex]}')`;
+  }
+
+  nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % images.length;
+    updateImage();
+  });
+
+  prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    updateImage();
+  });
+
+  updateImage();
+</script>-->
+
+
+
+    <a href="#listino" class="menu-box" id="ListinoBox">
+      <div class="menu-img slider-img" id="ListinoImg"></div>
+      <h3>Listino Prezzi</h3>
+      <div class="arrow-container">
+        <button class="arrow-btn" id="prevListino">&#9664;</button> <!-- ◀ -->
+       <button class="arrow-btn" id="nextListino">&#9654;</button> <!-- ▶ -->
+      </div>
+    </a>
+  
+ <a href="#cocktail" class="menu-box" id="CocktailBox">
+      <div class="menu-img slider-img" id="CocktailImg"></div>
+      <h3>Cocktail Bar</h3>
+      <div class="arrow-container">
+        <button class="arrow-btn" id="prevCocktail">&#9664;</button> <!-- ◀ -->
+       <button class="arrow-btn" id="nextCocktail">&#9654;</button> <!-- ▶ -->
+      </div>
+    </a>
+  </div>
+</section>
+
+
+ <!-- <script>
+  const images = [
+    'esterno.jpg',
+    'caffe.jpg',
+    'gru.jpg'
+  ];
+
+  let currentIndex = 0;
+  const imgEl = document.getElementById('ListinoImg');
+  const nextBtn = document.getElementById('nextListino');
+  const prevBtn = document.getElementById('prevListino');
+
+  function updateImage() {
+    imgEl.style.backgroundImage = `url('${images[currentIndex]}')`;
+  }
+
+  nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % images.length;
+    updateImage();
+  });
+
+  prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    updateImage();
+  });
+
+  updateImage();
+</script> --> 
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  // --- Carosello Colazioni ---
+  const imagesColazioni = ['colazione.jpg', 'caffe.jpg', 'gru.jpg'];
+  let currentIndexColazioni = 0;
+  const imgElColazioni = document.getElementById('colazioniImg');
+  const nextBtnColazioni = document.getElementById('nextColazione');
+  const prevBtnColazioni = document.getElementById('prevColazione');
+
+  function updateImageColazioni() {
+    imgElColazioni.style.backgroundImage = `url('${imagesColazioni[currentIndexColazioni]}')`;
+  }
+
+  nextBtnColazioni.addEventListener('click', (e) => {
+    e.preventDefault();
+    currentIndexColazioni = (currentIndexColazioni + 1) % imagesColazioni.length;
+    updateImageColazioni();
+  });
+
+  prevBtnColazioni.addEventListener('click', (e) => {
+    e.preventDefault();
+    currentIndexColazioni = (currentIndexColazioni - 1 + imagesColazioni.length) % imagesColazioni.length;
+    updateImageColazioni();
+  });
+
+  updateImageColazioni();
+
+  // --- Carosello Listino Prezzi ---
+  const imagesListino = ['esterno.jpg', 'caffe.jpg', 'gru.jpg'];
+  let currentIndexListino = 0;
+  const imgElListino = document.getElementById('ListinoImg');
+  const nextBtnListino = document.getElementById('nextListino');
+  const prevBtnListino = document.getElementById('prevListino');
+
+  function updateImageListino() {
+    imgElListino.style.backgroundImage = `url('${imagesListino[currentIndexListino]}')`;
+  }
+
+  nextBtnListino.addEventListener('click', (e) => {
+    e.preventDefault();
+    currentIndexListino = (currentIndexListino + 1) % imagesListino.length;
+    updateImageListino();
+  });
+
+  prevBtnListino.addEventListener('click', (e) => {
+    e.preventDefault();
+    currentIndexListino = (currentIndexListino - 1 + imagesListino.length) % imagesListino.length;
+    updateImageListino();
+  });
+
+  updateImageListino();
+
+  // --- Carosello Cocktail ---
+  const imagesCocktail = ['esterno.jpg', 'caffe.jpg', 'gru.jpg'];
+  let currentIndexCocktail = 0;
+  const imgElCocktail = document.getElementById('CocktailImg');
+  const nextBtnCocktail = document.getElementById('nextCocktail');
+  const prevBtnCocktail = document.getElementById('prevCocktail');
+
+  function updateImageCocktail() {
+    imgElCocktail.style.backgroundImage = `url('${imagesCocktail[currentIndexCocktail]}')`;
+  }
+
+  nextBtnCocktail.addEventListener('click', (e) => {
+    e.preventDefault();
+    currentIndexCocktail = (currentIndexCocktail + 1) % imagesCocktail.length;
+    updateImageCocktail();
+  });
+
+  prevBtnCocktail.addEventListener('click', (e) => {
+    e.preventDefault();
+    currentIndexCocktail = (currentIndexCocktail - 1 + imagesListino.length) % imagesCocktail.length;
+    updateImageCocktail();
+  });
+
+  updateImageCocktail();
+
+  // Carosello immagini per sezione Chi Siamo sezione chi siamo
+  const imagesChiSiamo = ['listino1.jpg', 'listino2.jpg', 'listino3.jpg'];
+let currentIndexChiSiamo = 0;
+const imgElChiSiamo = document.getElementById('chiSiamoSliderImg');
+const nextBtnChiSiamo = document.getElementById('nextChiSiamo');
+const prevBtnChiSiamo = document.getElementById('prevChiSiamo');
+
+function updateImageChiSiamo() {
+  imgElChiSiamo.style.backgroundImage = `url('${imagesChiSiamo[currentIndexChiSiamo]}')`;
+}
+
+nextBtnChiSiamo.addEventListener('click', () => {
+  currentIndexChiSiamo = (currentIndexChiSiamo + 1) % imagesChiSiamo.length;
+  updateImageChiSiamo();
+});
+
+prevBtnChiSiamo.addEventListener('click', () => {
+  currentIndexChiSiamo = (currentIndexChiSiamo - 1 + imagesChiSiamo.length) % imagesChiSiamo.length;
+  updateImageChiSiamo();
+});
+
+updateImageChiSiamo();
+
+});
+</script>
+
+
+
+<!-- ============================================================
+     SEZIONE MENU CON QR CODE
+============================================================ -->
+
+
+  <!-- 
+<section id="menu">
+  <h2>Il nostro Menù</h2>
+  <div class="menu-preview" onclick="toggleMenu()">
+    <p>Clicca qui per vedere il menù completo in anteprima</p>
+    <div class="menu-img" id="menuImage">
+      <img src="https://source.unsplash.com/800x600/?menu,restaurant" alt="Menù del bar" />
+    </div>
+  </div>
+</section> -->
+
+<!-- ============================================================
+     SEZIONE GALLERIA FOTOGRAFICA
+============================================================ -->
+
+<section id="galleria">
+  <h2>Galleria</h2>
+  <div class="slider-wrapper">
+    <div class="slider-track">
+       <!-- immagini duplicate per loop -->
+      <img src="caffe.jpg" alt="caffè" />
+      <img src="bancone.jpg" alt="bar" />
+      <img src="colazione.jpg" alt="colazione" />
+      <img src="Cocktails.jpg" alt="cocktail" />
+      <img src="Aperitivo.jpg" alt="aperitivo" />
+      <img src="esterno.jpg" alt="esterno" />
+      <img src="gru.jpg" alt="gruppo" />
+<!-- Loop -->
+      <img src="caffe.jpg" alt="caffè" />
+      <img src="bancone.jpg" alt="bar" />
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SEZIONE PRENOTAZIONI + CONTATTI/MAPPA/SOCIAL
+============================================================ -->
+<section id="prenota-contatti" class="two-columns-section">
+
+  <!-- Nuova colonna a sinistra, i nostri orari-->
+  
+
+<!--<div class="orari-container">
+  <div class="orari-header">
+    <img src="logo.png" alt="Logo azienda" class="orari-logo" />
+    <h2 class="orari-title">Orari di Apertura</h2>
+  </div>
+
+  <table class="orari-tabella">
+    <thead>
+      <tr>
+        <th>Giorno</th>
+        <th>Orario</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-label="Giorno">Lunedì</td>
+        <td data-label="Orario">07:00 - 15:00</td>
+      </tr>
+      <tr>
+        <td data-label="Giorno">Martedì</td>
+        <td data-label="Orario">07:00 - 23:00</td>
+      </tr>
+      <tr>
+        <td data-label="Giorno">Mercoledì</td>
+        <td data-label="Orario">07:00 - 23:00</td>
+      </tr>
+      <tr>
+        <td data-label="Giorno">Giovedì</td>
+        <td data-label="Orario">07:00 - 23:00</td>
+      </tr>
+      <tr>
+        <td data-label="Giorno" class="weekend">Venerdì</td>
+        <td data-label="Orario" class="weekend">07:00 - 01:00</td>
+      </tr>
+      <tr>
+        <td data-label="Giorno" class="weekend">Sabato</td>
+        <td data-label="Orario" class="weekend">08:00 - 01:00</td>
+      </tr>
+      <tr>
+        <td data-label="Giorno" class="weekend">Domenica</td>
+        <td data-label="Orario" class="weekend">08:00 - 23:00</td>
+      </tr>
+    </tbody>
+  </table>
+</div> 
+
+
+  </div> -->
+
+  <div class="orari-container">
+  <div class="orari-header">
+    <img src="logo.png" alt="Logo azienda" class="orari-logo" />
+    <h2 class="orari-title">Orari di Apertura</h2>
+    <button class="toggle-button" onclick="toggleOrari()">📅 Mostra Orari</button>
+  </div>
+
+  <div class="orari-wrapper" id="orariWrapper">
+    <table class="orari-tabella">
+      <thead>
+        <tr>
+          <th>Giorno</th>
+          <th>Orario</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Giorno">Lunedì</td>
+          <td data-label="Orario">07:00 - 15:00</td>
+        </tr>
+        <tr>
+          <td data-label="Giorno">Martedì</td>
+          <td data-label="Orario">07:00 - 23:00</td>
+        </tr>
+        <tr>
+          <td data-label="Giorno">Mercoledì</td>
+          <td data-label="Orario">07:00 - 23:00</td>
+        </tr>
+        <tr>
+          <td data-label="Giorno">Giovedì</td>
+          <td data-label="Orario">07:00 - 23:00</td>
+        </tr>
+        <tr>
+          <td class="weekend">Venerdì</td>
+          <td class="weekend">07:00 - 01:00</td>
+        </tr>
+        <tr>
+          <td class="weekend">Sabato</td>
+          <td class="weekend">08:00 - 01:00</td>
+        </tr>
+        <tr>
+          <td class="weekend">Domenica</td>
+          <td class="weekend">08:00 - 23:00</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  function toggleOrari() {
+    const wrapper = document.getElementById("orariWrapper");
+    wrapper.classList.toggle("open");
+  }
+</script>
+
+  <!-- COLONNA SINISTRA: FORM PRENOTAZIONE -->
+  <!--<div class="column left">
+    <h2>Prenota un Tavolo</h2>
+    <form>
+      <div class="form-group">
+        <input type="text" placeholder="Nome completo" required />
+      </div>
+      <div class="form-group">
+        <input type="email" placeholder="Email" required />
+      </div>
+      <div class="form-group">
+        <input type="tel" placeholder="Telefono" required />
+      </div>
+      <div class="form-group">
+        <textarea placeholder="Note o richieste speciali..." rows="4"></textarea>
+      </div>
+      <button type="submit">Invia</button>
+    </form>
+  </div>
+-->
+  <!-- COLONNA DESTRA: MAPPA + CONTATTI -->
+  <div class="column right">
+    <h2>Dove Siamo</h2>
+    <iframe 
+      src="https://www.google.com/maps?q=Via+Roma+123,+Milano&output=embed" 
+      allowfullscreen="" 
+      loading="lazy"
+    ></iframe>
+    
+    <h3>Contatti</h3>
+    <p>📍 Via Roma 123, Milano</p>
+    <p>📞 <a href="tel:+390212345678">+39 02 12345678</a></p>
+    <p>📧 <a href="mailto:info@barbellavita.it">info@barbellavita.it</a></p>
+
+   
+<div class="social-buttons">
+  <a href="https://www.instagram.com/tuoprofilo" class="social instagram" target="_blank" aria-label="Instagram">
+    <i class="fab fa-instagram"></i>
+  </a>
+  <a href="https://www.facebook.com/tuopagina" class="social facebook" target="_blank" aria-label="Facebook">
+    <i class="fab fa-facebook-f"></i>
+  </a>
+  <a href="https://wa.me/391234567890" class="social whatsapp" target="_blank" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+</div>
+
+
+    
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer>
+  <p>&copy; 2025 Bar Bella Vita – Tutti i diritti riservati</p>
+</footer>
+
+<!-- ============================================================
+     SCRIPT FUNZIONALITÀ JS
+============================================================ -->
+<script>
+  // Toggle anteprima menu
+  function toggleMenu() {
+    const menuImg = document.getElementById('menuImage');
+    menuImg.style.display = menuImg.style.display === 'block' ? 'none' : 'block';
+  }
+
+  // Galleria slideshow infinito
+  const slider = document.getElementById('sliderTrack');
+  let scrollSpeed = 1;
+  let isHovered = false;
+
+  function autoScroll() {
+    if (!isHovered) {
+      slider.scrollLeft += scrollSpeed;
+      if (slider.scrollLeft >= slider.scrollWidth / 2) {
+        slider.scrollLeft = 0;
+      }
+    }
+  }
+
+  function scrollSlider(direction) {
+    slider.scrollLeft += direction * 300;
+  }
+
+  slider.addEventListener('mouseenter', () => isHovered = true);
+  slider.addEventListener('mouseleave', () => isHovered = false);
+
+  setInterval(autoScroll, 20);
+
+  // Menù fullscreen gestione apertura/chiusura
+  const menuButton = document.getElementById('menuButton');
+  const fullscreenMenu = document.getElementById('fullscreenMenu');
+  const closeMenuBtn = document.getElementById('closeMenu');
+
+  let touchTimeout;
+
+  function openMenu() {
+    fullscreenMenu.classList.add('active');
+    fullscreenMenu.setAttribute('aria-hidden', 'false');
+    menuButton.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeMenu() {
+    fullscreenMenu.classList.remove('active');
+    fullscreenMenu.setAttribute('aria-hidden', 'true');
+    menuButton.setAttribute('aria-expanded', 'false');
+    clearTimeout(touchTimeout);
+  }
+
+  // Mobile: touchstart e tieni premuto per aprire
+  menuButton.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    openMenu();
+
+    // Se non tieni premuto 3 secondi, chiudi menu
+    touchTimeout = setTimeout(() => {
+      closeMenu();
+    }, 3000);
+  });
+
+  // Tocca fuori o chiudi
+  fullscreenMenu.addEventListener('touchstart', (e) => {
+    if (e.target === fullscreenMenu || e.target === closeMenuBtn) {
+      closeMenu();
+    }
+  });
+
+  closeMenuBtn.addEventListener('click', closeMenu);
+
+  // Desktop: chiudi se mouse esce dal menù fullscreen
+  fullscreenMenu.addEventListener('mouseleave', () => {
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      closeMenu();
+    }
+  });
+
+  // sessione menu QR
+/* const toggleBtn = document.getElementById('toggleMenuBtn');
+const menuPreview = document.getElementById('menuPreviewContent');
+const qrCode = document.getElementById('qrCodeContent');
+
+toggleBtn.addEventListener('click', () => {
+  if (menuPreview.style.display === 'none' || menuPreview.style.display === '') {
+    menuPreview.style.display = 'block';
+    qrCode.style.display = 'none';
+  } else {
+    menuPreview.style.display = 'none';
+    qrCode.style.display = 'block';
+  }
+});
+
+const radiusRange = document.getElementById('radiusRange');
+const heroOverlay = document.querySelector('.hero-section .hero-overlay');
+
+radiusRange.addEventListener('input', () => {
+  heroOverlay.style.borderRadius = radiusRange.value + 'px';
+});*/
+
+  // Aspetta che il DOM sia pronto
+  document.addEventListener('DOMContentLoaded', function () {
+    const toggleBtn = document.getElementById('toggleMenuBtn');
+    const menuImage = document.getElementById('menuImage');
+    const radiusRange = document.getElementById('radiusRange');
+    const heroOverlay = document.querySelector('#chi-siamo .hero-overlay');
+
+    toggleBtn.addEventListener('click', () => {
+      if (menuImage.style.display === 'none' || menuImage.style.display === '') {
+        menuImage.style.display = 'block';
+      } else {
+        menuImage.style.display = 'none';
+      }
+    });
+
+    radiusRange.addEventListener('input', () => {
+      heroOverlay.style.borderRadius = radiusRange.value + 'px';
+    });
+  });
+
+// sezione scorrimento immagini colazione
+document.addEventListener('DOMContentLoaded', () => {
+  const images = [
+    '/colazione.jpg',
+    '/caffe.jpg',
+    '/gru.jpg'
+  ];
+
+  let currentIndex = 0;
+  const imgEl = document.getElementById('colazioniImg');
+  const nextBtn = document.getElementById('nextColazione');
+  const prevBtn = document.getElementById('prevColazione');
+
+  function updateImage() {
+    imgEl.style.backgroundImage = `url('${images[currentIndex]}')`;
+  }
+
+  nextBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    currentIndex = (currentIndex + 1) % images.length;
+    updateImage();
+  });
+
+  prevBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    updateImage();
+  });
+
+  // Autoplay ogni 5 secondi
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % images.length;
+    updateImage();
+  }, 5000);
+
+  // Swipe support (touch)
+  let startX = 0;
+
+  imgEl.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+  });
+
+  imgEl.addEventListener('touchend', (e) => {
+    const endX = e.changedTouches[0].clientX;
+    const diff = endX - startX;
+
+    if (Math.abs(diff) > 30) {
+      if (diff > 0) {
+        // Swipe a destra
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+      } else {
+        // Swipe a sinistra
+        currentIndex = (currentIndex + 1) % images.length;
+      }
+      updateImage();
+    }
+  });
+
+  updateImage(); // inizializza
+});
+
+
+</script>
+
+</body>
+</html>
