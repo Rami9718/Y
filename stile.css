@@ -2,13 +2,13 @@
    RESET & BASE STYLES
 ========================== */
 * {
-  margin: 0; /* Rimuove il margine di default */
-  padding: 0; /* Rimuove il padding di default */
-  box-sizing: border-box; /* Include padding e border nella dimensione */
+  margin: 0; /* Rimuove margini predefiniti da tutti gli elementi */
+  padding: 0; /* Rimuove padding predefiniti da tutti gli elementi */
+  box-sizing: border-box; /* Include padding e border nelle dimensioni */
 }
 
 html {
-  scroll-behavior: smooth; /* Scorrimento fluido su anchor link */
+  scroll-behavior: smooth; /* Scorrimento fluido per link interni */
 }
 
 body {
@@ -25,39 +25,29 @@ body {
   background-color: #111; /* Sfondo scuro */
   color: #fff; /* Testo bianco */
   padding: 1rem 2rem; /* Spaziatura interna */
-  position: sticky; /* Resta in alto quando si scrolla */
+  position: sticky; /* Header fisso in alto durante lo scroll */
   top: 0;
-  z-index: 999; /* In primo piano */
-  display: flex; /* Allinea logo, titolo e menu in orizzontale */
-  align-items: center; /* Allinea verticalmente */
-  justify-content: space-between; /* Spazio tra titolo e menu */
+  z-index: 999; /* Sopra altri elementi */
+  display: flex; /* Allinea logo e menu orizzontalmente */
+  align-items: center; /* Centra verticalmente */
+  justify-content: space-between; /* Spazio tra logo e menu */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5); /* Ombra leggera */
-  border: none;
-  border-radius: 10px; /* Bordi arrotondati */
-  margin: 30px auto 0 auto; /* Margine sopra e centrato */
-  max-width: auto; /* Larghezza massima su schermi grandi */
-}
-
-/* ==========================
-   TITOLO DEL BAR
-========================== */
-.titolo h1 {
-  font-size: clamp(24px, 6vw, 60px); /* Testo responsive da 24 a 60px */
-  text-align: center; /* Centra il testo */
-  margin-bottom: 1rem; /* Spazio sotto al titolo */
+  border-radius: 10px; /* Angoli arrotondati */
+  margin: 30px auto 0 auto; /* Margine sopra e centrato orizzontalmente */
+  max-width: auto; /* Larghezza automatica */
 }
 
 /* ==========================
    LOGO
 ========================== */
 .logo {
-  display: flex; /* Logo + testo/immagine in riga */
-  align-items: center;
-  gap: 10px; /* Spazio tra elementi nel logo */
+  display: flex; /* Logo in riga */
+  align-items: center; /* Verticalmente centrato */
+  gap: 10px; /* Spazio tra elementi logo */
 }
 
 .logo img {
-  height: 50px; /* Altezza fissa per l'immagine del logo */
+  height: 50px; /* Altezza fissa immagine logo */
 }
 
 /* ==========================
@@ -66,7 +56,7 @@ body {
 @font-face {
   font-family: 'Inter';
   src: url('fonts/static/test.ttf') format('truetype');
-  font-weight: 400; /* Normale */
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
@@ -74,7 +64,7 @@ body {
 @font-face {
   font-family: 'Inter';
   src: url('fonts/static/test.ttf') format('truetype');
-  font-weight: 700; /* Grassetto */
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
@@ -83,32 +73,55 @@ body {
    NAVBAR BASE
 ========================== */
 nav {
-  display: none; /* Inizialmente nascosto su mobile */
-  flex-direction: column; /* Mostrato in colonna se aperto */
-  gap: 10px; /* Spazio verticale tra link */
+  /* Nascondiamo il menu mobile di default (serve per popup) */
+  position: fixed; /* Posizione fissa per popup */
+  top: 0; /* Allineato in alto */
+  right: -300px; /* Spostato fuori dallo schermo a destra */
+  height: 100vh; /* Altezza schermo intero */
+  width: 280px; /* Larghezza popup menu */
   background: #111; /* Sfondo scuro */
-  padding: 1rem; /* Spazio interno */
+  padding: 2rem 1rem; /* Padding interno */
+  display: flex; /* Flex per colonna */
+  flex-direction: column; /* Colonna verticale */
+  gap: 20px; /* Spazio tra link */
+  box-shadow: -4px 0 8px rgba(0,0,0,0.5); /* Ombra lato sinistro popup */
+  transition: right 0.3s ease; /* Animazione apertura/chiusura */
+  z-index: 1000; /* Sopra header */
 }
 
+/* Classe attiva per mostrare menu a destra */
 nav.nav-open {
-  display: flex; /* Mostra il menu quando ha la classe nav-open */
+  right: 0; /* Sposta il menu dentro lo schermo */
 }
 
 /* ==========================
    MENU HAMBURGER (☰)
 ========================== */
-.menu-toggle {
-  display: none; /* Mostrato su mobile */
-  font-size: 2rem; /* Dimensione grande */
-  color: white; /* Colore icona */
-  cursor: pointer; /* Cambia il cursore al passaggio */
+#menuButton {
+  background: none; /* Nessun sfondo */
+  border: none; /* Nessun bordo */
+  color: white; /* Colore bianco */
+  font-size: 2.5rem; /* Grandezza icona */
+  cursor: pointer; /* Puntatore mano */
+  display: block; /* Visibile di default su mobile */
+  z-index: 1100; /* Sopra tutto */
+}
+
+/* Bottone chiudi dentro menu */
+#closeButton {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  align-self: flex-end; /* Allineato a destra */
+  cursor: pointer;
 }
 
 /* ==========================
-   LINK NAV DESKTOP & MOBILE
+   LINK NAV (desktop e mobile)
 ========================== */
 .desktop-nav {
-  display: none; /* Nascosto su mobile */
+  display: flex; /* Sempre visibile su desktop */
   font-family: 'Inter', sans-serif;
   font-weight: 700;
   gap: 32px;
@@ -116,7 +129,6 @@ nav.nav-open {
   letter-spacing: 0.03em;
 }
 
-/* Stili condivisi per link */
 .desktop-nav a,
 nav a {
   color: white;
@@ -125,28 +137,83 @@ nav a {
   transition: color 0.3s ease;
 }
 
-/* Hover/focus su link */
 .desktop-nav a:hover,
 .desktop-nav a:focus,
 nav a:hover,
 nav a:focus {
-  color: #f39c12; /* Colore evidenziato */
-  outline: none; /* Nessun bordo focus */
+  color: #f39c12; /* Colore hover/focus */
+  outline: none;
 }
-#menuButton {
+
+/* Stile base menu mobile popup (nascosto) */
+#mobileNav {
+  position: fixed;              /* Fisso rispetto alla finestra */
+  top: 60px;                   /* Distanza dall'header (aggiustabile) */
+  right: 20px;                 /* Distanza dal bordo destro */
+  background-color: #111;      /* Sfondo scuro */
+  color: white;                /* Testo bianco */
+  border-radius: 12px;         /* Angoli arrotondati */
+  box-shadow: 0 8px 16px rgba(0,0,0,0.4); /* Ombra profonda */
+  padding: 1rem 1.5rem;        /* Spaziatura interna */
+  display: none;               /* Nascosto di default */
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 200px;            /* Larghezza minima */
+  max-width: 280px;            /* Larghezza massima */
+  max-height: 80vh;            /* Altezza massima, evita di superare lo schermo */
+  overflow-y: auto;            /* Scroll verticale se troppo alto */
+  z-index: 1000;               /* Sopra tutto */
+  font-weight: 700;
+  animation: popupFadeIn 0.3s ease forwards;
+}
+
+/* Quando il menu è aperto */
+#mobileNav.nav-open {
+  display: flex;               /* Mostra il popup */
+}
+
+/* Bottone chiudi in alto a destra */
+#closeButton {
+  align-self: flex-end;        /* Allinea a destra */
   background: none;
   border: none;
   color: white;
   font-size: 2rem;
-  display: none; /* nascosto di default */
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
 }
 
-@media (max-width: 768px) {
-  #menuButton {
-    display: block; /* visibile solo sotto 768px */
+#closeButton:hover {
+  color: #f39c12;              /* Cambia colore al passaggio */
+}
+
+/* Link menu mobile */
+#mobileNav a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 0;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#mobileNav a:hover,
+#mobileNav a:focus {
+  background-color: #f39c12;
+  color: #111;
+  outline: none;
+}
+
+/* Animazione di fade-in + slide da destra */
+@keyframes popupFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
   }
-  .desktop-nav {
-    display: none; /* nav desktop nascosta su mobile */
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
@@ -154,23 +221,45 @@ nav a:focus {
 /* ==========================
    RESPONSIVE DESIGN
 ========================== */
-@media (min-width: 768px) {
-  .menu-toggle {
-    display: block; /* Nasconde ☰ su desktop */
-  }
-
-  nav {
-    display: flex !important; /* Mostra menu orizzontale */
-    flex-direction: row; /* Menu in riga su desktop */
-    background: transparent; /* Sfondo trasparente */
-    padding: 0; /* Rimuove padding extra */
-  }
-
+@media (max-width: 768px) {
   .desktop-nav {
-    display: flex; /* Mostra il menu desktop */
-    justify-content: center;
+    display: none; /* Nascondi menu desktop su mobile */
+  }
+  
+  #menuButton {
+    display: block; /* Mostra bottone hamburger su mobile */
   }
 }
+
+@media (min-width: 769px) {
+  nav {
+    position: static; /* Menu normale */
+    height: auto;
+    width: auto;
+    background: transparent; /* Sfondo trasparente */
+    flex-direction: row; /* Menu in orizzontale */
+    padding: 0; /* Rimuove padding */
+    box-shadow: none; /* Rimuove ombra */
+    right: auto; /* Reset posizione */
+    transition: none; /* Nessuna animazione */
+    display: flex !important; /* Mostra menu sempre */
+  }
+  
+  #menuButton {
+    display: none; /* Nasconde bottone hamburger su desktop */
+  }
+  
+  #closeButton {
+    display: none; /* Nasconde tasto chiudi su desktop */
+  }
+
+  /* Nascondi popup mobile su desktop */
+  #mobileNav {
+    display: none !important;
+  }
+}
+
+
 
 
 
