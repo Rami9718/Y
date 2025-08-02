@@ -166,8 +166,6 @@ POPUP
      SEZIONE MENU CON QR CODE
 ============================================================ -->
 
-
-
 <!-- Barra principale contenente i bottoni -->
 <div class="menu-bar">
   <!-- Bottone per aprire immagine del menu -->
@@ -176,11 +174,9 @@ POPUP
   <!-- Contenitore dropdown per PDF e QR -->
   <div class="dropdown-container">
     <!-- Bottone toggle: SVG icona + / × -->
-<!-- Bottone "+" (ora solo testo) -->
-<button class="menu-button toggle-extra" id="toggleExtra">
-  <span id="toggleIcon">+</span>
-</button>
-    
+    <button class="menu-button toggle-extra" id="toggleExtra">
+      <span id="toggleIcon">+</span>
+    </button>
 
     <!-- Bottoni extra -->
     <div class="extra-buttons" id="extraButtons">
@@ -194,7 +190,7 @@ POPUP
 <div class="modal" id="menuModal">
   <div class="modal-content">
     <span class="close" id="closeMenuImage">&times;</span>
-    <img src="test.jpg" alt="Immagine del menù" style="max-width:100%; height:auto; display:block;">
+    <img src="test.jpg" alt="Immagine del menù">
   </div>
 </div>
 
@@ -202,7 +198,7 @@ POPUP
 <div class="modal" id="pdfModal">
   <div class="modal-content">
     <span class="close" id="closePdf">&times;</span>
-    <iframe src="test.jpg" width="100%" height="500px" style="border:none;"></iframe>
+    <iframe src="test.txt" width="100%" height="500px" style="border:none;"></iframe>
   </div>
 </div>
 
@@ -210,59 +206,45 @@ POPUP
 <div class="modal" id="qrModal">
   <div class="modal-content">
     <span class="close" id="closeQR">&times;</span>
-    <img src="test.jpg" alt="QR per scaricare il menù" style="max-width:100%; height:auto; display:block;">
+    <img src="qr-code.jpg" alt="QR per scaricare il menù">
   </div>
 </div>
-
-
-
-
-
-
-
-
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   // Selettori dei bottoni e contenitori
   const toggleExtra = document.getElementById("toggleExtra"); // Bottone "+"
-  const extraButtons = document.getElementById("extraButtons"); // Contenitore con PDF/QR
-  const toggleIcon = document.getElementById("toggleIcon"); // Simbolo visivo "+"/"×"
+  const extraButtons = document.getElementById("extraButtons"); // Contenitore PDF/QR
+  const toggleIcon = document.getElementById("toggleIcon"); // Simbolo + / ×
 
-  // 🟢 Gestione apertura/chiusura del menu PDF/QR
+  // Gestione apertura/chiusura menu PDF/QR
   toggleExtra.addEventListener("click", () => {
     const isVisible = extraButtons.classList.contains("show");
-
     if (isVisible) {
       extraButtons.classList.remove("show");
-      toggleIcon.textContent = "+"; // torna a "+"
+      toggleIcon.textContent = "+";
     } else {
       extraButtons.classList.add("show");
-      toggleIcon.textContent = "×"; // cambia in "×"
+      toggleIcon.textContent = "×";
     }
   });
 
-  // 🔄 Funzione riutilizzabile per aprire e chiudere popup
+  // Funzione generica per popup modali
   function setupModal(triggerId, modalId, closeId) {
-    const openBtn = document.getElementById(triggerId);   // Bottone che apre la modale
-    const modal = document.getElementById(modalId);       // La modale stessa
-    const closeBtn = document.getElementById(closeId);    // Bottone per chiudere
+    const openBtn = document.getElementById(triggerId);
+    const modal = document.getElementById(modalId);
+    const closeBtn = document.getElementById(closeId);
 
-    // Mostra la modale
     openBtn.addEventListener("click", () => {
-      modal.style.display = "block";
-      
-      // Se il menu extra è aperto, lo chiude
-      extraButtons.classList.remove("show");
-      toggleIcon.textContent = "+"; // ripristina il simbolo "+"
+      modal.style.display = "flex";  // usa flex per centrare
+      extraButtons.classList.remove("show");  // chiude menu extra se aperto
+      toggleIcon.textContent = "+";
     });
 
-    // Chiude la modale cliccando sulla "x"
     closeBtn.addEventListener("click", () => {
       modal.style.display = "none";
     });
 
-    // Chiude cliccando fuori dalla modale
     window.addEventListener("click", (event) => {
       if (event.target === modal) {
         modal.style.display = "none";
@@ -270,12 +252,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // 🔧 Inizializza le modali con i relativi ID
+  // Inizializza popup
   setupModal("openMenuImageBtn", "menuModal", "closeMenuImage");
   setupModal("openPdfBtn", "pdfModal", "closePdf");
   setupModal("openQRBtn", "qrModal", "closeQR");
 });
 </script>
+
 
 
 
@@ -470,7 +453,7 @@ updateImageChiSiamo();
 
   <div class="orari-container">
   <div class="orari-header">
-    <img src="logo.png" alt="Logo azienda" class="orari-logo" />
+    <img src="logosole2.jpg" alt="Logo azienda" class="orari-logo" />
     <h2 class="orari-title">Orari di Apertura</h2>
     <button class="toggle-button" onclick="toggleOrari()">📅 Mostra Orari</button>
   </div>
@@ -554,9 +537,9 @@ updateImageChiSiamo();
     ></iframe>
     
     <h3>Contatti</h3>
-    <p>📍 Via Roma 123, Milano</p>
-    <p>📞 <a href="tel:+390212345678">+39 02 12345678</a></p>
-    <p>📧 <a href="mailto:info@barbellavita.it">info@barbellavita.it</a></p>
+    <p>📍 Verona</p>
+    <p>📞 <a href="tel:+390212345678">+2313123</a></p>
+    <p>📧 <a href="mailto:info@barbellavita.it">email@xxx</a></p>
 
    
 <div class="social-buttons">
