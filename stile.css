@@ -1,112 +1,178 @@
-/* ========== RESET & BASE ========== */
+/* ==========================
+   RESET & BASE STYLES
+========================== */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin: 0; /* Rimuove il margine di default */
+  padding: 0; /* Rimuove il padding di default */
+  box-sizing: border-box; /* Include padding e border nella dimensione */
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth; /* Scorrimento fluido su anchor link */
 }
 
 body {
-  font-family: 'Inter', sans-serif;
-  line-height: 1.6;
-  background-color: #fff;
-  color: #111;
+  font-family: 'Inter', sans-serif; /* Font base */
+  line-height: 1.6; /* Altezza linea leggibile */
+  background-color: #fff; /* Sfondo bianco */
+  color: #111; /* Testo quasi nero */
 }
 
-/* ========== HEADER ========== */
+/* ==========================
+   HEADER STYLES
+========================== */
 .dark-header {
-  background-color: #111;
-  color: #fff;
-  padding: 1rem 2rem;
-  position: sticky;
+  background-color: #111; /* Sfondo scuro */
+  color: #fff; /* Testo bianco */
+  padding: 1rem 2rem; /* Spaziatura interna */
+  position: sticky; /* Resta in alto quando si scrolla */
   top: 0;
-  z-index: 999;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  z-index: 999; /* In primo piano */
+  display: flex; /* Allinea logo, titolo e menu in orizzontale */
+  align-items: center; /* Allinea verticalmente */
+  justify-content: space-between; /* Spazio tra titolo e menu */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5); /* Ombra leggera */
   border: none;
-  /*border-radius: 10px;*/
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 30px;
+  border-radius: 10px; /* Bordi arrotondati */
+  margin: 30px auto 0 auto; /* Margine sopra e centrato */
+  max-width: auto; /* Larghezza massima su schermi grandi */
 }
 
+/* ==========================
+   TITOLO DEL BAR
+========================== */
+.titolo h1 {
+  font-size: clamp(24px, 6vw, 60px); /* Testo responsive da 24 a 60px */
+  text-align: center; /* Centra il testo */
+  margin-bottom: 1rem; /* Spazio sotto al titolo */
+}
 
-
-
+/* ==========================
+   LOGO
+========================== */
 .logo {
-  display: flex;
+  display: flex; /* Logo + testo/immagine in riga */
   align-items: center;
-  gap: 10px;
+  gap: 10px; /* Spazio tra elementi nel logo */
 }
 
 .logo img {
-  height: 50px;
+  height: 50px; /* Altezza fissa per l'immagine del logo */
 }
 
+/* ==========================
+   FONT PERSONALIZZATO
+========================== */
 @font-face {
   font-family: 'Inter';
-  src: url('fonts/static/test.ttf') format('ttf'),
-       url('fonts/static/test.ttf') format('ttf');
-  font-weight: 400;
+  src: url('fonts/static/test.ttf') format('truetype');
+  font-weight: 400; /* Normale */
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
   font-family: 'Inter';
-  src: url('fonts/static/test.tff') format('ttf'),
-       url('fonts/static/test.tff') format('ttf');
-  font-weight: 700;
+  src: url('fonts/static/test.ttf') format('truetype');
+  font-weight: 700; /* Grassetto */
   font-style: normal;
   font-display: swap;
 }
 
+/* ==========================
+   NAVBAR BASE
+========================== */
+nav {
+  display: none; /* Inizialmente nascosto su mobile */
+  flex-direction: column; /* Mostrato in colonna se aperto */
+  gap: 10px; /* Spazio verticale tra link */
+  background: #111; /* Sfondo scuro */
+  padding: 1rem; /* Spazio interno */
+}
+
+nav.nav-open {
+  display: flex; /* Mostra il menu quando ha la classe nav-open */
+}
+
+/* ==========================
+   MENU HAMBURGER (☰)
+========================== */
+.menu-toggle {
+  display: none; /* Mostrato su mobile */
+  font-size: 2rem; /* Dimensione grande */
+  color: white; /* Colore icona */
+  cursor: pointer; /* Cambia il cursore al passaggio */
+}
+
+/* ==========================
+   LINK NAV DESKTOP & MOBILE
+========================== */
 .desktop-nav {
+  display: none; /* Nascosto su mobile */
   font-family: 'Inter', sans-serif;
-  font-weight: 700; /* usa il bold */
-  display: flex;
-  justify-content: center;
+  font-weight: 700;
   gap: 32px;
   font-size: 1.1rem;
   letter-spacing: 0.03em;
 }
 
-.desktop-nav a {
+/* Stili condivisi per link */
+.desktop-nav a,
+nav a {
   color: white;
   text-decoration: none;
   padding: 8px 12px;
   transition: color 0.3s ease;
 }
 
+/* Hover/focus su link */
 .desktop-nav a:hover,
-.desktop-nav a:focus {
-  color: #f39c12;
-  outline: none;
+.desktop-nav a:focus,
+nav a:hover,
+nav a:focus {
+  color: #f39c12; /* Colore evidenziato */
+  outline: none; /* Nessun bordo focus */
 }
-
-
 #menuButton {
   background: none;
   border: none;
   color: white;
   font-size: 2rem;
-  display: none;
+  display: none; /* nascosto di default */
 }
 
 @media (max-width: 768px) {
-  .desktop-nav {
-    display: none;
-  }
-
   #menuButton {
-    display: block;
+    display: block; /* visibile solo sotto 768px */
+  }
+  .desktop-nav {
+    display: none; /* nav desktop nascosta su mobile */
   }
 }
+
+
+/* ==========================
+   RESPONSIVE DESIGN
+========================== */
+@media (min-width: 768px) {
+  .menu-toggle {
+    display: block; /* Nasconde ☰ su desktop */
+  }
+
+  nav {
+    display: flex !important; /* Mostra menu orizzontale */
+    flex-direction: row; /* Menu in riga su desktop */
+    background: transparent; /* Sfondo trasparente */
+    padding: 0; /* Rimuove padding extra */
+  }
+
+  .desktop-nav {
+    display: flex; /* Mostra il menu desktop */
+    justify-content: center;
+  }
+}
+
+
 
 /* ========== HERO - CHI SIAMO ========== */
 /*.hero-section {
@@ -1239,5 +1305,3 @@ footer {
   font-size: 24px;
   cursor: pointer;
 }
-
-
