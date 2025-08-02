@@ -29,7 +29,10 @@
   <!-- Bottone hamburger per mobile -->
   <button id="menuButton" aria-label="Apri menu">&#9776;</button>
 
+  
   <!-- Popup menu mobile -->
+
+  
   <nav id="mobileNav" aria-label="Menu mobile">
     <button id="closeButton" aria-label="Chiudi menu">&times;</button>
     <a href="#chi-siamo">Chi Siamo</a>
@@ -67,26 +70,22 @@
 </header>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const openBtn = document.getElementById("menuButton");
-    const closeBtn = document.getElementById("closeButton");
-    const mobileNav = document.getElementById("mobileNav");
+document.addEventListener("DOMContentLoaded", function () {
+  const menuButton = document.getElementById("menuButton");
+  const mobileNav = document.getElementById("mobileNav");
+  const closeButton = document.getElementById("closeButton");
 
-    openBtn.addEventListener("click", () => {
-      mobileNav.classList.add("nav-open");
-    });
-
-    closeBtn.addEventListener("click", () => {
-      mobileNav.classList.remove("nav-open");
-    });
-
-    // Optional: chiudi menu cliccando fuori
-    document.addEventListener("click", (e) => {
-      if (!mobileNav.contains(e.target) && !openBtn.contains(e.target)) {
-        mobileNav.classList.remove("nav-open");
-      }
-    });
+  menuButton.addEventListener("click", function () {
+    mobileNav.classList.add("nav-open");
+    menuButton.style.display = "none"; // nascondi hamburger quando popup aperto
   });
+
+  closeButton.addEventListener("click", function () {
+    mobileNav.classList.remove("nav-open");
+    menuButton.style.display = "block"; // mostra hamburger quando chiuso
+  });
+});
+
 </script>
 
 
