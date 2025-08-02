@@ -15,8 +15,8 @@
 ============================================================ -->
 <header class="dark-header">
   <div class="logo">
-    <img src="logo.png" alt="Logo Bar">
-    <h1>Bar Nome</h1>
+    <img src="logosole2.jpg" alt="Logo Bar">
+    <h1>Caffetteria Sole</h1>
   </div>
   <nav class="desktop-nav">
     <a href="#chi-siamo">Chi Siamo</a>
@@ -71,7 +71,7 @@
 <!-- ============================================================
      SEZIONE CHI SIAMO CON FACCIA E NUVOLETTA
 ============================================================ -->
-<section id="chi-siamo" class="chi-siamo-section">
+<!--<section id="chi-siamo" class="chi-siamo-section">
   <div class="chi-siamo-bg">
    <div class="cloud-box">
   <h2>Chi Siamo</h2>
@@ -82,7 +82,7 @@
   <button class="popup-btn" onclick="togglePopup()">La nostra storia</button>
 </div>
 
-<!-- POPUP -->
+POPUP 
 <div class="popup-overlay" id="popupOverlay">
   <div class="popup-content">
     <span class="close-btn" onclick="togglePopup()">&times;</span>
@@ -96,14 +96,14 @@
 </div>
 
   </div>
-</section>
+</section> 
 
 <script>
   function togglePopup() {
     const popup = document.getElementById("popupOverlay");
     popup.style.display = popup.style.display === "flex" ? "none" : "flex";
   }
-</script>
+</script>-->
 
 
 <script>
@@ -126,46 +126,127 @@
 <!-- ============================================================
      HERO SPLIT: CHI SIAMO A SINISTRA + SPECIALITÀ A DESTRA
 ============================================================ -->
-<!--<section id="chi-siamo" class="hero-section">
-  <div class="hero-overlay animated-content">
-    <h2>Chi Siamo</h2>
-    <p>Siamo un bar a conduzione familiare con passione per il buon cibo, il caffè e le persone. Ogni cliente per noi è di casa.</p>
- 
 
- <h2>Il nostro Menù</h2>
-  <div class="menu-preview" onclick="toggleMenu()">
-    <p>Clicca qui per vedere il QR code </p>
-    <div class="menu-img" id="menuImage">
-   <p>Scansiona il QR code per scaricare il menù completo in PDF</p>
-  <img src="path-to-your-qr-code.png" alt="QR code per scaricare il menù PDF" style="max-width:200px; cursor:pointer;" onclick="window.open('link-al-pdf.pdf', '_blank')" />
-  </div>
-  </div>
-      </div>
+
+
+<!-- ============================================================
+     SEZIONE MENU CON QR CODE
+============================================================ -->
+
+
+
+<!-- Barra principale contenente i bottoni -->
+<div class="menu-bar">
+  <!-- Bottone per aprire immagine del menu -->
+  <button id="openMenuImageBtn" class="menu-button">Visualizza Menù</button>
+
+  <!-- Contenitore dropdown per PDF e QR -->
+  <div class="dropdown-container">
+    <!-- Bottone toggle: SVG icona + / × -->
+<!-- Bottone "+" (ora solo testo) -->
+<button class="menu-button toggle-extra" id="toggleExtra">
+  <span id="toggleIcon">+</span>
+</button>
+    
+
+    <!-- Bottoni extra -->
+    <div class="extra-buttons" id="extraButtons">
+      <button id="openPdfBtn" class="menu-button">Apri PDF</button>
+      <button id="openQRBtn" class="menu-button">Mostra QR Code</button>
     </div>
   </div>
+</div>
 
-</section>-->
+<!-- POPUP: Immagine del menù -->
+<div class="modal" id="menuModal">
+  <div class="modal-content">
+    <span class="close" id="closeMenuImage">&times;</span>
+    <img src="menu-img.jpg" alt="Immagine del menù" style="max-width:100%; height:auto; display:block;">
+  </div>
+</div>
 
-<!--<section id="chi-siamo" class="hero-section">
-  <div class="hero-overlay animated-content" style="border-radius: 60px; transition: border-radius 0.3s ease;">
-    <h2>Chi Siamo</h2>
-    <p>Siamo un bar a conduzione familiare con passione per il buon cibo, il caffè e le persone. Ogni cliente per noi è di casa.</p>
+<!-- POPUP: PDF -->
+<div class="modal" id="pdfModal">
+  <div class="modal-content">
+    <span class="close" id="closePdf">&times;</span>
+    <iframe src="menu.pdf" width="100%" height="500px" style="border:none;"></iframe>
+  </div>
+</div>
 
-    <h2>Il nostro Menù</h2>
-    <div class="menu-preview">
-      <button id="toggleMenuBtn" style="cursor:pointer; margin-bottom: 1rem;">Clicca qui per vedere il QR code</button>
+<!-- POPUP: QR Code -->
+<div class="modal" id="qrModal">
+  <div class="modal-content">
+    <span class="close" id="closeQR">&times;</span>
+    <img src="qr-menu.png" alt="QR per scaricare il menù" style="max-width:100%; height:auto; display:block;">
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  // Selettori dei bottoni e contenitori
+  const toggleExtra = document.getElementById("toggleExtra"); // Bottone "+"
+  const extraButtons = document.getElementById("extraButtons"); // Contenitore con PDF/QR
+  const toggleIcon = document.getElementById("toggleIcon"); // Simbolo visivo "+"/"×"
+
+  // 🟢 Gestione apertura/chiusura del menu PDF/QR
+  toggleExtra.addEventListener("click", () => {
+    const isVisible = extraButtons.classList.contains("show");
+
+    if (isVisible) {
+      extraButtons.classList.remove("show");
+      toggleIcon.textContent = "+"; // torna a "+"
+    } else {
+      extraButtons.classList.add("show");
+      toggleIcon.textContent = "×"; // cambia in "×"
+    }
+  });
+
+  // 🔄 Funzione riutilizzabile per aprire e chiudere popup
+  function setupModal(triggerId, modalId, closeId) {
+    const openBtn = document.getElementById(triggerId);   // Bottone che apre la modale
+    const modal = document.getElementById(modalId);       // La modale stessa
+    const closeBtn = document.getElementById(closeId);    // Bottone per chiudere
+
+    // Mostra la modale
+    openBtn.addEventListener("click", () => {
+      modal.style.display = "block";
       
-      <div class="menu-img" id="menuImage" style="display:none;">
-        <p>Scansiona il QR code per scaricare il menù completo in PDF</p>
-        <img src="path-to-your-qr-code.png" alt="QR code per scaricare il menù PDF" style="max-width:200px; cursor:pointer;" 
-          onclick="window.open('link-al-pdf.pdf', '_blank')" />
-      </div>
-    </div>
+      // Se il menu extra è aperto, lo chiude
+      extraButtons.classList.remove("show");
+      toggleIcon.textContent = "+"; // ripristina il simbolo "+"
+    });
 
-    <label for="radiusRange" style="display:block; margin-top: 1rem;">Regola angoli (border-radius):</label>
-    <input type="range" id="radiusRange" min="0" max="100" value="25" />
-  </div>
-</section> -->
+    // Chiude la modale cliccando sulla "x"
+    closeBtn.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+
+    // Chiude cliccando fuori dalla modale
+    window.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+  }
+
+  // 🔧 Inizializza le modali con i relativi ID
+  setupModal("openMenuImageBtn", "menuModal", "closeMenuImage");
+  setupModal("openPdfBtn", "pdfModal", "closePdf");
+  setupModal("openQRBtn", "qrModal", "closeQR");
+});
+</script>
+
+
+
+
 
 
 
@@ -191,34 +272,7 @@
      </div>
     </a>
 
-  <!-- <script>
-  const images = [
-    'colazione.jpg',
-    'caffe.jpg',
-    'gru.jpg'
-  ];
-
-  let currentIndex = 0;
-  const imgEl = document.getElementById('colazioniImg');
-  const nextBtn = document.getElementById('nextColazione');
-  const prevBtn = document.getElementById('prevColazione');
-
-  function updateImage() {
-    imgEl.style.backgroundImage = `url('${images[currentIndex]}')`;
-  }
-
-  nextBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % images.length;
-    updateImage();
-  });
-
-  prevBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + images.length) % images.length;
-    updateImage();
-  });
-
-  updateImage();
-</script>-->
+ 
 
 
 
@@ -243,34 +297,7 @@
 </section>
 
 
- <!-- <script>
-  const images = [
-    'esterno.jpg',
-    'caffe.jpg',
-    'gru.jpg'
-  ];
 
-  let currentIndex = 0;
-  const imgEl = document.getElementById('ListinoImg');
-  const nextBtn = document.getElementById('nextListino');
-  const prevBtn = document.getElementById('prevListino');
-
-  function updateImage() {
-    imgEl.style.backgroundImage = `url('${images[currentIndex]}')`;
-  }
-
-  nextBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % images.length;
-    updateImage();
-  });
-
-  prevBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + images.length) % images.length;
-    updateImage();
-  });
-
-  updateImage();
-</script> --> 
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
@@ -378,21 +405,6 @@ updateImageChiSiamo();
 
 
 
-<!-- ============================================================
-     SEZIONE MENU CON QR CODE
-============================================================ -->
-
-
-  <!-- 
-<section id="menu">
-  <h2>Il nostro Menù</h2>
-  <div class="menu-preview" onclick="toggleMenu()">
-    <p>Clicca qui per vedere il menù completo in anteprima</p>
-    <div class="menu-img" id="menuImage">
-      <img src="https://source.unsplash.com/800x600/?menu,restaurant" alt="Menù del bar" />
-    </div>
-  </div>
-</section> -->
 
 <!-- ============================================================
      SEZIONE GALLERIA FOTOGRAFICA
@@ -422,57 +434,6 @@ updateImageChiSiamo();
 ============================================================ -->
 <section id="prenota-contatti" class="two-columns-section">
 
-  <!-- Nuova colonna a sinistra, i nostri orari-->
-  
-
-<!--<div class="orari-container">
-  <div class="orari-header">
-    <img src="logo.png" alt="Logo azienda" class="orari-logo" />
-    <h2 class="orari-title">Orari di Apertura</h2>
-  </div>
-
-  <table class="orari-tabella">
-    <thead>
-      <tr>
-        <th>Giorno</th>
-        <th>Orario</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td data-label="Giorno">Lunedì</td>
-        <td data-label="Orario">07:00 - 15:00</td>
-      </tr>
-      <tr>
-        <td data-label="Giorno">Martedì</td>
-        <td data-label="Orario">07:00 - 23:00</td>
-      </tr>
-      <tr>
-        <td data-label="Giorno">Mercoledì</td>
-        <td data-label="Orario">07:00 - 23:00</td>
-      </tr>
-      <tr>
-        <td data-label="Giorno">Giovedì</td>
-        <td data-label="Orario">07:00 - 23:00</td>
-      </tr>
-      <tr>
-        <td data-label="Giorno" class="weekend">Venerdì</td>
-        <td data-label="Orario" class="weekend">07:00 - 01:00</td>
-      </tr>
-      <tr>
-        <td data-label="Giorno" class="weekend">Sabato</td>
-        <td data-label="Orario" class="weekend">08:00 - 01:00</td>
-      </tr>
-      <tr>
-        <td data-label="Giorno" class="weekend">Domenica</td>
-        <td data-label="Orario" class="weekend">08:00 - 23:00</td>
-      </tr>
-    </tbody>
-  </table>
-</div> 
-
-
-  </div> -->
 
   <div class="orari-container">
   <div class="orari-header">
@@ -670,27 +631,6 @@ updateImageChiSiamo();
     }
   });
 
-  // sessione menu QR
-/* const toggleBtn = document.getElementById('toggleMenuBtn');
-const menuPreview = document.getElementById('menuPreviewContent');
-const qrCode = document.getElementById('qrCodeContent');
-
-toggleBtn.addEventListener('click', () => {
-  if (menuPreview.style.display === 'none' || menuPreview.style.display === '') {
-    menuPreview.style.display = 'block';
-    qrCode.style.display = 'none';
-  } else {
-    menuPreview.style.display = 'none';
-    qrCode.style.display = 'block';
-  }
-});
-
-const radiusRange = document.getElementById('radiusRange');
-const heroOverlay = document.querySelector('.hero-section .hero-overlay');
-
-radiusRange.addEventListener('input', () => {
-  heroOverlay.style.borderRadius = radiusRange.value + 'px';
-});*/
 
   // Aspetta che il DOM sia pronto
   document.addEventListener('DOMContentLoaded', function () {
