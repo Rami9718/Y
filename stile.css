@@ -146,50 +146,55 @@ nav a:focus {
 }
 
 /* Stile base menu mobile popup (nascosto) */
+
+
+/* ============================
+   MENU MOBILE POPUP STYLES
+============================ */
 #mobileNav {
-  position: fixed;              /* Fisso rispetto alla finestra */
-  top: 60px;                   /* Distanza dall'header (aggiustabile) */
-  right: 20px;                 /* Distanza dal bordo destro */
-  background-color: #111;      /* Sfondo scuro */
-  color: white;                /* Testo bianco */
-  border-radius: 12px;         /* Angoli arrotondati */
-  box-shadow: 0 8px 16px rgba(0,0,0,0.4); /* Ombra profonda */
-  padding: 1rem 1.5rem;        /* Spaziatura interna */
-  display: none;               /* Nascosto di default */
-  flex-direction: column;
-  gap: 1rem;
-  min-width: 200px;            /* Larghezza minima */
-  max-width: 280px;            /* Larghezza massima */
-  max-height: 80vh;            /* Altezza massima, evita di superare lo schermo */
-  overflow-y: auto;            /* Scroll verticale se troppo alto */
-  z-index: 1000;               /* Sopra tutto */
-  font-weight: 700;
-  animation: popupFadeIn 0.3s ease forwards;
+  position: fixed;              /* Fissa il menu rispetto alla finestra del browser */
+  top: 60px;                    /* Distanza dal bordo superiore (sotto l’header) */
+  right: 20px;                  /* Appare sul lato destro con un po’ di margine */
+  background-color: #111;       /* Sfondo nero */
+  color: white;                 /* Testo bianco */
+  border-radius: 12px;          /* Angoli arrotondati */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Ombra per effetto sollevato */
+  padding: 1rem 1.5rem;         /* Spaziatura interna sopra/sotto 1rem, ai lati 1.5rem */
+  display: none;                /* Nascosto di default */
+  flex-direction: column;       /* I link vengono impilati verticalmente */
+  gap: 1rem;                    /* Spazio tra i link */
+  width: max-content;           /* Larghezza adattiva al contenuto più lungo */
+  max-width: 90vw;              /* Non supera il 90% dello schermo */
+  max-height: 80vh;             /* Altezza massima: evita che vada oltre la finestra */
+  overflow-y: auto;             /* Abilita scroll verticale se necessario */
+  z-index: 1000;                /* Sopra gli altri elementi */
+  font-weight: 700;             /* Testo in grassetto */
+  animation: popupFadeIn 0.3s ease forwards; /* Animazione ingresso */
 }
 
-/* Quando il menu è aperto */
+/* Mostra il popup quando ha la classe .nav-open */
 #mobileNav.nav-open {
-  display: flex;               /* Mostra il popup */
+  display: flex;
 }
 
-/* Bottone chiudi in alto a destra */
+/* Bottone "X" per chiudere */
 #closeButton {
-  align-self: flex-end;        /* Allinea a destra */
-  background: none;
-  border: none;
-  color: white;
-  font-size: 2rem;
-  cursor: pointer;
+  align-self: flex-end;         /* Allineato a destra */
+  background: none;             /* Nessuno sfondo */
+  border: none;                 /* Nessun bordo */
+  color: white;                 /* Colore icona */
+  font-size: 2rem;              /* Dimensione grande */
+  cursor: pointer;              /* Cursore mano */
   padding: 0;
-  margin-bottom: 0.5rem;
-  transition: color 0.3s ease;
+  margin-bottom: 0.5rem;        /* Distanza dai link */
+  transition: color 0.3s ease;  /* Transizione al passaggio */
 }
 
 #closeButton:hover {
-  color: #f39c12;              /* Cambia colore al passaggio */
+  color: #f39c12;               /* Cambia colore quando ci passi sopra */
 }
 
-/* Link menu mobile */
+/* Stile dei link nel popup */
 #mobileNav a {
   color: white;
   text-decoration: none;
@@ -205,7 +210,7 @@ nav a:focus {
   outline: none;
 }
 
-/* Animazione di fade-in + slide da destra */
+/* Animazione di entrata: fade e slide da destra */
 @keyframes popupFadeIn {
   from {
     opacity: 0;
@@ -216,6 +221,7 @@ nav a:focus {
     transform: translateX(0);
   }
 }
+
 
 
 /* ==========================
@@ -404,37 +410,36 @@ nav a:focus {
 
 
 
-/* ========== GALLERIA ========== */
+/* =============================
+   GALLERIA - SLIDER AUTO LOOP
+============================= */
 #galleria {
   padding: 4rem 2rem;
   background-color: #f3f3f3;
 }
-
 .slider-wrapper {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
+  overflow: hidden;              /* Nasconde overflow visivo */
+  width: 100%;                   /* Occupa tutta la larghezza */
+  position: relative;            /* Per controlli futuri (es. frecce) */
+  padding: 1rem 0;
 }
 
 .slider-track {
-  display: flex;
-  gap: 1rem;
-  animation: scrollLeft 6s linear infinite;
+  display: flex;                 /* Immagini disposte orizzontalmente */
+  width: fit-content;            /* Larghezza si adatta al contenuto */
+  gap: 1rem;                     /* Spazio tra immagini */
+  animation: scrollSlider 12s linear infinite; /* Scroll automatico continuo + velocita in s */
 }
 
 .slider-track img {
-  height: 200px;
-  border-radius: 10px;
-  object-fit: cover;
-  flex-shrink: 0;
-  transition: transform 0.3s ease;
+  height: 180px;                 /* Altezza immagini */
+  flex-shrink: 0;                /* Non comprimere le immagini */
+  border-radius: 10px;           /* Angoli arrotondati */
+  object-fit: cover;             /* Ritaglia mantenendo proporzioni */
 }
 
-.slider-track img:hover {
-  transform: scale(1.05);
-}
-
-@keyframes scrollLeft {
+/* Animazione che fa scorrere la galleria da destra verso sinistra */
+@keyframes scrollSlider {
   0% {
     transform: translateX(0);
   }
@@ -443,28 +448,15 @@ nav a:focus {
   }
 }
 
-.arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: #000;
-  color: #fff;
-  border: none;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  z-index: 10;
-  font-size: 1.5rem;
-  border-radius: 50%;
-  opacity: 0.7;
+/* =============================
+   RESPONSIVE DESIGN
+============================= */
+@media (max-width: 768px) {
+  .slider-track img {
+    height: 130px;               /* Immagini più piccole su mobile */
+  }
 }
 
-.arrow.left {
-  left: 10px;
-}
-
-.arrow.right {
-  right: 10px;
-}
 
 /* ========== FORM PRENOTA E CONTATTI/MAPPA/SOCIAL========== */
 .two-columns-section {
