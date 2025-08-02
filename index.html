@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bar</title>
   <link rel="stylesheet" href="stile.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
 
@@ -18,6 +17,7 @@
     <img src="logosole2.jpg" alt="Logo Bar">
     <h1>Caffetteria Sole</h1>
   </div>
+
   <nav class="desktop-nav">
     <a href="#chi-siamo">Chi Siamo</a>
     <a href="#menu">Menu</a>
@@ -25,53 +25,74 @@
     <a href="#prenota">Prenota</a>
     <a href="#contatti">Contatti</a>
   </nav>
-  <button id="menuButton" aria-label="Menu">&#9776;</button>
 
-<div class="floating-socials">
-  <a href="https://wa.me/391234567890?text=Ciao%20vorrei%20prenotare%20un%20tavolo%20per%20stasera!" 
-     class="social-btn whatsapp" 
-     target="_blank" 
-     aria-label="WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-   <span class="tooltip-text">WhatsApp</span>
-  </a>
+  <!-- Bottone hamburger per mobile -->
+  <button id="menuButton" aria-label="Apri menu">&#9776;</button>
 
-  <a href="https://www.instagram.com/iltuoaccount" 
-     class="social-btn instagram" 
-     target="_blank" 
-     aria-label="Instagram">
-    <i class="fab fa-instagram"></i>
-   <span class="tooltip-text">Instagram</span>
-  </a>
+  <!-- Popup menu mobile -->
+  <nav id="mobileNav" aria-label="Menu mobile">
+    <button id="closeButton" aria-label="Chiudi menu">&times;</button>
+    <a href="#chi-siamo">Chi Siamo</a>
+    <a href="#menu">Menu</a>
+    <a href="#galleria">Galleria</a>
+    <a href="#prenota">Prenota</a>
+    <a href="#contatti">Contatti</a>
+  </nav>
 
-  <a href="https://www.facebook.com/iltuoaccount" 
-     class="social-btn facebook" 
-     target="_blank" 
-     aria-label="Facebook">
-    <i class="fab fa-facebook-f"></i>
-   <span class="tooltip-text">Facebook</span>
-  </a>
-</div>
+  <div class="floating-socials">
+    <a href="https://wa.me/391234567890?text=Ciao%20vorrei%20prenotare%20un%20tavolo%20per%20stasera!" 
+       class="social-btn whatsapp" 
+       target="_blank" 
+       aria-label="WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+      <span class="tooltip-text">WhatsApp</span>
+    </a>
 
-<!--script mobile+ desk-->
+    <a href="https://www.instagram.com/iltuoaccount" 
+       class="social-btn instagram" 
+       target="_blank" 
+       aria-label="Instagram">
+      <i class="fab fa-instagram"></i>
+      <span class="tooltip-text">Instagram</span>
+    </a>
+
+    <a href="https://www.facebook.com/iltuoaccount" 
+       class="social-btn facebook" 
+       target="_blank" 
+       aria-label="Facebook">
+      <i class="fab fa-facebook-f"></i>
+      <span class="tooltip-text">Facebook</span>
+    </a>
+  </div>
+</header>
+
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    const toggle = document.getElementById("menuButton"); // correggo qui
-    const nav = document.querySelector("nav.desktop-nav"); // target preciso nav desktop
+    const openBtn = document.getElementById("menuButton");
+    const closeBtn = document.getElementById("closeButton");
+    const mobileNav = document.getElementById("mobileNav");
 
-    toggle.addEventListener("click", function () {
-      nav.classList.toggle("nav-open"); // toggle per mostrare/nascondere nav
+    openBtn.addEventListener("click", () => {
+      mobileNav.classList.add("nav-open");
+    });
+
+    closeBtn.addEventListener("click", () => {
+      mobileNav.classList.remove("nav-open");
+    });
+
+    // Optional: chiudi menu cliccando fuori
+    document.addEventListener("click", (e) => {
+      if (!mobileNav.contains(e.target) && !openBtn.contains(e.target)) {
+        mobileNav.classList.remove("nav-open");
+      }
     });
   });
 </script>
 
 
+</body>
+</html>
 
-
-
-
-
-</header>
 
 <!-- ============================================================
      SEZIONE HERO CON SLIDESHOW AUTOMATICO
