@@ -28,7 +28,15 @@ body {
   align-items: center;
   justify-content: space-between;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
 }
+
+
+
 
 .logo {
   display: flex;
@@ -101,15 +109,15 @@ body {
 }
 
 /* ========== HERO - CHI SIAMO ========== */
-.hero-section {
-  position: relative;
+/*.hero-section {
+  position: sticky;
   background: url('Aperitivo.jpg') no-repeat center center / cover;
   min-height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
   color: rgb(179, 7, 7);
-}
+}*/
 
 /*.hero-overlay {
   background: rgba(0, 0, 0, 0.5);
@@ -130,10 +138,10 @@ body {
   transition: border-radius 0.3s ease;
 }*/
 .hero-overlay {
-  max-width: 900px;/* allarga il contenuto */
+  max-width: auto;/* allarga il contenuto */
   margin: 3rem auto; /* centra e aggiunge margine verticale */
-  padding: 6rem 6rem;  /* spazio interno */
-  min-height: 450px;
+  padding: 2rem 2rem;  /* spazio interno */
+  min-height: auto;
   border-radius: 60px;
   background-color: rgb(0, 0, 0);
   box-sizing: border-box;
@@ -141,7 +149,7 @@ body {
   flex-direction: column;
   justify-content: center;/* verticale */
   align-items: flex-start;  /* or left align with align-items: flex-start */
-  text-align: left;
+  text-align: center;
   transform: translateX(0px); /* spostato a destra */
   transition: border-radius 0.3s ease;
   color: rgb(250, 248, 248);
@@ -916,8 +924,17 @@ footer {
 
 /* ================== HERO SLIDESHOW ================== */
 .hero-slideshow {
+
+  padding: 10px 20px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
   height: 90vh;
   width: 100%;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   overflow: hidden;
   position: relative;
 }
@@ -929,7 +946,11 @@ footer {
   background-position: center;
   animation: fadein 1s ease-in-out;
   transition: background-image 1s ease-in-out;
+  transform: scale(1.03);
 }
+
+
+
 
 /* ================== CHI SIAMO ================== */
 .chi-siamo-section {
@@ -1041,4 +1062,180 @@ footer {
     transform: translateY(0);
     opacity: 1;
   }
+}
+
+
+/* Sezione menu ============================== */
+.btn-previous-style {
+  padding: 10px 25px;
+  background-color: #d4a373; /* tonalità calda */
+  color: #111;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+  text-align: center;
+  min-width: 130px;
+}
+
+.btn-previous-style:hover {
+  background-color: #b88658;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  position: relative;
+  background: #222;
+  padding: 15px;
+  border-radius: 10px;
+  max-width: 90vw;
+  max-height: 90vh;
+  box-shadow: 0 0 20px rgba(0,0,0,0.7);
+  overflow: auto;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 2rem;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.3s ease;
+}
+
+.close:hover {
+  color: #d4a373;
+}
+
+@media screen and (max-width: 600px) {
+  .menu-buttons-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .btn-previous-style {
+    width: 100%;
+    min-width: unset;
+  }
+}
+
+/* NUovo menu */
+
+/* Barra menu */
+.menu-bar {
+  margin-top: 30px; /* o la quantità di spazio che preferisci */
+  background-color: #004B49;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-sart;
+  gap: 20px;
+  border-radius: 30px;
+  flex-wrap: wrap;
+}
+
+/* Bottoni */
+.menu-button {
+  padding: 10px 20px;
+  background-color: #DAA520;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s, transform 0.1s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.menu-button:hover {
+  background-color: #c1911e;
+}
+.menu-button:active {
+  transform: scale(0.97);
+}
+
+/* Dropdown PDF + QR */
+.dropdown-container {
+  position: relative;
+}
+.extra-buttons {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 10px;
+  gap: 10px;
+  background-color: #004B49;
+  padding: 10px;
+  border-radius: 10px;
+  z-index: 100;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.extra-buttons.show {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Modali */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 200;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Contenuto modale */
+.modal-content {
+  background: white;
+  margin: 8% auto;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 600px;
+  width: 90%;
+  position: relative;
+  animation: scaleIn 0.3s ease;
+}
+@keyframes scaleIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+/* Pulsante chiusura modale */
+.close {
+  position: absolute;
+  top: 10px; right: 15px;
+  font-size: 24px;
+  cursor: pointer;
 }
