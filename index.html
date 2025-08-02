@@ -53,6 +53,19 @@
   </a>
 </div>
 
+<!--script mobile+ desk-->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const toggle = document.getElementById("menuButton"); // correggo qui
+    const nav = document.querySelector("nav.desktop-nav"); // target preciso nav desktop
+
+    toggle.addEventListener("click", function () {
+      nav.classList.toggle("nav-open"); // toggle per mostrare/nascondere nav
+    });
+  });
+</script>
+
+
 
 
 
