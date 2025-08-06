@@ -5,9 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bar</title>
   <link rel="stylesheet" href="stile.css" />
+  <link rel="stylesheet" href="SocCont.css" />
+  <link rel="stylesheet" href="HeadNav.css" />
+  <link rel="stylesheet" href="SecMenu.css" />
+  <link rel="stylesheet" href="TreColonne.css" />
+  <link rel="stylesheet" href="DivSplash.css" />
+  <!-- loghi social -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
+
+<!-- DIV SPLASH CHE COPRE TUTTO LO SCHERMO AL CARICAMENTO -->
+<div id="splash">
+  <!-- Logo centrato -->
+  <img src="logosole2.jpg" alt="Logo Bar" />
+</div>
+
+<script>
+// Esegue il codice quando la pagina è completamente caricata
+document.addEventListener("DOMContentLoaded", () => {
+  const splash = document.getElementById("splash");
+  const mainContent = document.getElementById("mainContent");
+
+  // Nascondi splash con dissolvenza
+  splash.classList.add("hidden");
+
+  // Dopo la dissolvenza mostra il contenuto
+  setTimeout(() => {
+    splash.style.display = "none";
+    mainContent.style.display = "block";
+  }, 800); // uguale alla durata della transizione CSS
+});
+
+
+
+</script>
+
 
 <!-- ============================================================
      HEADER + NAVIGAZIONE
@@ -18,6 +51,7 @@
     <h1>Caffetteria Sole</h1>
   </div>
 
+  <!-- Menu desktop -->
   <nav class="desktop-nav">
     <a href="#chi-siamo">Chi Siamo</a>
     <a href="#menu">Menu</a>
@@ -26,21 +60,22 @@
     <a href="#contatti">Contatti</a>
   </nav>
 
-  <!-- Bottone hamburger per mobile -->
-  <button id="menuButton" aria-label="Apri menu">&#9776;</button>
+  <!-- Bottone hamburger -->
+  <button id="menuButton" aria-label="Apri menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 
-  
-  <!-- Popup menu mobile -->
-
-  
+  <!-- Menu mobile -->
   <nav id="mobileNav" aria-label="Menu mobile">
-    <button id="closeButton" aria-label="Chiudi menu">&times;</button>
     <a href="#chi-siamo">Chi Siamo</a>
     <a href="#menu">Menu</a>
     <a href="#galleria">Galleria</a>
     <a href="#prenota">Prenota</a>
     <a href="#contatti">Contatti</a>
   </nav>
+
 
   <div class="floating-socials">
     <a href="https://wa.me/391234567890?text=Ciao%20vorrei%20prenotare%20un%20tavolo%20per%20stasera!" 
@@ -69,22 +104,44 @@
   </div>
 </header>
 
+
+<!-- ============================================================
+    Script per il navbar e aprire sotto menu mobile
+============================================================ -->
 <script>
-document.addEventListener("DOMContentLoaded", function () {
+//==================Script per il navbar e aprire sotto menu mobile==================
+document.addEventListener("DOMContentLoaded", () => {
   const menuButton = document.getElementById("menuButton");
   const mobileNav = document.getElementById("mobileNav");
-  const closeButton = document.getElementById("closeButton");
 
-  menuButton.addEventListener("click", function () {
-    mobileNav.classList.add("nav-open");
-    menuButton.style.display = "none"; // nascondi hamburger quando popup aperto
+  // Toggle classe .active su bottone per animare hamburger -> X
+  // Toggle classe .nav-open su mobileNav per mostrare/nascondere menu
+  menuButton.addEventListener("click", () => {
+    const isOpen = mobileNav.classList.toggle("nav-open");
+    menuButton.classList.toggle("active", isOpen);
   });
 
-  closeButton.addEventListener("click", function () {
-    mobileNav.classList.remove("nav-open");
-    menuButton.style.display = "block"; // mostra hamburger quando chiuso
+  // Chiudi menu cliccando su un link nel menu (opzionale ma utile)
+  mobileNav.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      mobileNav.classList.remove("nav-open");
+      menuButton.classList.remove("active");
+    });
+  });
+
+  // (Facoltativo) Chiudi menu cliccando fuori dal menu
+  document.addEventListener("click", (e) => {
+    if (mobileNav.classList.contains("nav-open") &&
+        !mobileNav.contains(e.target) &&
+        !menuButton.contains(e.target)) {
+      mobileNav.classList.remove("nav-open");
+      menuButton.classList.remove("active");
+    }
   });
 });
+
+
+
 
 </script>
 
@@ -99,44 +156,6 @@ document.addEventListener("DOMContentLoaded", function () {
 <section class="hero-slideshow">
   <div class="hero-image" id="heroImage"></div>
 </section>
-
-
-<!-- ============================================================
-     SEZIONE CHI SIAMO CON FACCIA E NUVOLETTA
-============================================================ -->
-<!--<section id="chi-siamo" class="chi-siamo-section">
-  <div class="chi-siamo-bg">
-   <div class="cloud-box">
-  <h2>Chi Siamo</h2>
-  <p>
-    Siamo una caffetteria accogliente a conduzione familiare. Amiamo il profumo del caffè al mattino,
-    i sorrisi dei clienti e le chiacchiere sincere.
-  </p>
-  <button class="popup-btn" onclick="togglePopup()">La nostra storia</button>
-</div>
-
-POPUP 
-<div class="popup-overlay" id="popupOverlay">
-  <div class="popup-content">
-    <span class="close-btn" onclick="togglePopup()">&times;</span>
-    <h3>La nostra storia</h3>
-    <p>
-      Il nostro bar nasce nel cuore del quartiere nel 1985, da un sogno di famiglia: creare un luogo dove
-      il caffè avesse l’odore di casa e il sorriso fosse il benvenuto. Da allora serviamo ogni tazzina con
-      lo stesso amore e cura.
-    </p>
-  </div>
-</div>
-
-  </div>
-</section> 
-
-<script>
-  function togglePopup() {
-    const popup = document.getElementById("popupOverlay");
-    popup.style.display = popup.style.display === "flex" ? "none" : "flex";
-  }
-</script>-->
 
 
 <script>
@@ -155,10 +174,6 @@ POPUP
   });
 </script>
 
-
-<!-- ============================================================
-     HERO SPLIT: CHI SIAMO A SINISTRA + SPECIALITÀ A DESTRA
-============================================================ -->
 
 
 
@@ -261,16 +276,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-
-
-
-
-
-
-
-
-
-
 <!-- ============================================================
      SEZIONE MENU CON 3 COLONNE
 ============================================================ -->
@@ -294,7 +299,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     <a href="#listino" class="menu-box" id="ListinoBox">
       <div class="menu-img slider-img" id="ListinoImg"></div>
-      <h3>Listino Prezzi</h3>
+      <h3>AperiTime</h3>
       <div class="arrow-container">
         <button class="arrow-btn" id="prevListino">&#9664;</button> <!-- ◀ -->
        <button class="arrow-btn" id="nextListino">&#9654;</button> <!-- ▶ -->
@@ -484,16 +489,16 @@ updateImageChiSiamo();
           <td data-label="Orario">07:00 - 23:00</td>
         </tr>
         <tr>
-          <td class="weekend">Venerdì</td>
-          <td class="weekend">07:00 - 01:00</td>
+          <td data-label="Giorno" class="weekend">Venerdì</td>
+          <td data-label="Orario" class="weekend">07:00 - 01:00</td>
         </tr>
         <tr>
-          <td class="weekend">Sabato</td>
-          <td class="weekend">08:00 - 01:00</td>
+          <td data-label="Giorno" class="weekend">Sabato</td>
+          <td data-label="Orario" class="weekend">08:00 - 01:00</td>
         </tr>
         <tr>
-          <td class="weekend">Domenica</td>
-          <td class="weekend">08:00 - 23:00</td>
+          <td data-label="Giorno" class="weekend">Domenica</td>
+          <td data-label="Orario" class="weekend">08:00 - 23:00</td>
         </tr>
       </tbody>
     </table>
@@ -567,170 +572,7 @@ updateImageChiSiamo();
   <p>&copy; 2025 Caffetteria Sole – Tutti i diritti riservati - Ramis Bakaj</p>
 </footer>
 
-<!-- ============================================================
-     SCRIPT FUNZIONALITÀ JS
-============================================================ -->
-<script>
-  // Toggle anteprima menu
-  function toggleMenu() {
-    const menuImg = document.getElementById('menuImage');
-    menuImg.style.display = menuImg.style.display === 'block' ? 'none' : 'block';
-  }
 
-  // Galleria slideshow infinito
-  const slider = document.getElementById('sliderTrack');
-  let scrollSpeed = 1;
-  let isHovered = false;
-
-  function autoScroll() {
-    if (!isHovered) {
-      slider.scrollLeft += scrollSpeed;
-      if (slider.scrollLeft >= slider.scrollWidth / 2) {
-        slider.scrollLeft = 0;
-      }
-    }
-  }
-
-  function scrollSlider(direction) {
-    slider.scrollLeft += direction * 300;
-  }
-
-  slider.addEventListener('mouseenter', () => isHovered = true);
-  slider.addEventListener('mouseleave', () => isHovered = false);
-
-  setInterval(autoScroll, 20);
-
-  // Menù fullscreen gestione apertura/chiusura
-  const menuButton = document.getElementById('menuButton');
-  const fullscreenMenu = document.getElementById('fullscreenMenu');
-  const closeMenuBtn = document.getElementById('closeMenu');
-
-  let touchTimeout;
-
-  function openMenu() {
-    fullscreenMenu.classList.add('active');
-    fullscreenMenu.setAttribute('aria-hidden', 'false');
-    menuButton.setAttribute('aria-expanded', 'true');
-  }
-
-  function closeMenu() {
-    fullscreenMenu.classList.remove('active');
-    fullscreenMenu.setAttribute('aria-hidden', 'true');
-    menuButton.setAttribute('aria-expanded', 'false');
-    clearTimeout(touchTimeout);
-  }
-
-  // Mobile: touchstart e tieni premuto per aprire
-  menuButton.addEventListener('touchstart', (e) => {
-    e.preventDefault();
-    openMenu();
-
-    // Se non tieni premuto 3 secondi, chiudi menu
-    touchTimeout = setTimeout(() => {
-      closeMenu();
-    }, 3000);
-  });
-
-  // Tocca fuori o chiudi
-  fullscreenMenu.addEventListener('touchstart', (e) => {
-    if (e.target === fullscreenMenu || e.target === closeMenuBtn) {
-      closeMenu();
-    }
-  });
-
-  closeMenuBtn.addEventListener('click', closeMenu);
-
-  // Desktop: chiudi se mouse esce dal menù fullscreen
-  fullscreenMenu.addEventListener('mouseleave', () => {
-    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-      closeMenu();
-    }
-  });
-
-
-  // Aspetta che il DOM sia pronto
-  document.addEventListener('DOMContentLoaded', function () {
-    const toggleBtn = document.getElementById('toggleMenuBtn');
-    const menuImage = document.getElementById('menuImage');
-    const radiusRange = document.getElementById('radiusRange');
-    const heroOverlay = document.querySelector('#chi-siamo .hero-overlay');
-
-    toggleBtn.addEventListener('click', () => {
-      if (menuImage.style.display === 'none' || menuImage.style.display === '') {
-        menuImage.style.display = 'block';
-      } else {
-        menuImage.style.display = 'none';
-      }
-    });
-
-    radiusRange.addEventListener('input', () => {
-      heroOverlay.style.borderRadius = radiusRange.value + 'px';
-    });
-  });
-
-// sezione scorrimento immagini colazione
-document.addEventListener('DOMContentLoaded', () => {
-  const images = [
-    '/colazione.jpg',
-    '/caffe.jpg',
-    '/gru.jpg'
-  ];
-
-  let currentIndex = 0;
-  const imgEl = document.getElementById('colazioniImg');
-  const nextBtn = document.getElementById('nextColazione');
-  const prevBtn = document.getElementById('prevColazione');
-
-  function updateImage() {
-    imgEl.style.backgroundImage = `url('${images[currentIndex]}')`;
-  }
-
-  nextBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    currentIndex = (currentIndex + 1) % images.length;
-    updateImage();
-  });
-
-  prevBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    currentIndex = (currentIndex - 1 + images.length) % images.length;
-    updateImage();
-  });
-
-  // Autoplay ogni 5 secondi
-  setInterval(() => {
-    currentIndex = (currentIndex + 1) % images.length;
-    updateImage();
-  }, 5000);
-
-  // Swipe support (touch)
-  let startX = 0;
-
-  imgEl.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX;
-  });
-
-  imgEl.addEventListener('touchend', (e) => {
-    const endX = e.changedTouches[0].clientX;
-    const diff = endX - startX;
-
-    if (Math.abs(diff) > 30) {
-      if (diff > 0) {
-        // Swipe a destra
-        currentIndex = (currentIndex - 1 + images.length) % images.length;
-      } else {
-        // Swipe a sinistra
-        currentIndex = (currentIndex + 1) % images.length;
-      }
-      updateImage();
-    }
-  });
-
-  updateImage(); // inizializza
-});
-
-
-</script>
 
 </body>
 </html>

@@ -1,0 +1,164 @@
+<!-- ============================================================
+     SCRIPT FUNZIONALITÀ JS
+============================================================ -->
+<script>
+  // Toggle anteprima menu
+  function toggleMenu() {
+    const menuImg = document.getElementById('menuImage');
+    menuImg.style.display = menuImg.style.display === 'block' ? 'none' : 'block';
+  }
+
+  // Galleria slideshow infinito
+  const slider = document.getElementById('sliderTrack');
+  let scrollSpeed = 1;
+  let isHovered = false;
+
+  function autoScroll() {
+    if (!isHovered) {
+      slider.scrollLeft += scrollSpeed;
+      if (slider.scrollLeft >= slider.scrollWidth / 2) {
+        slider.scrollLeft = 0;
+      }
+    }
+  }
+
+  function scrollSlider(direction) {
+    slider.scrollLeft += direction * 300;
+  }
+
+  slider.addEventListener('mouseenter', () => isHovered = true);
+  slider.addEventListener('mouseleave', () => isHovered = false);
+
+  setInterval(autoScroll, 20);
+
+  // Menù fullscreen gestione apertura/chiusura
+  const menuButton = document.getElementById('menuButton');
+  const fullscreenMenu = document.getElementById('fullscreenMenu');
+  const closeMenuBtn = document.getElementById('closeMenu');
+
+  let touchTimeout;
+
+  function openMenu() {
+    fullscreenMenu.classList.add('active');
+    fullscreenMenu.setAttribute('aria-hidden', 'false');
+    menuButton.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeMenu() {
+    fullscreenMenu.classList.remove('active');
+    fullscreenMenu.setAttribute('aria-hidden', 'true');
+    menuButton.setAttribute('aria-expanded', 'false');
+    clearTimeout(touchTimeout);
+  }
+
+  // Mobile: touchstart e tieni premuto per aprire
+  menuButton.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    openMenu();
+
+    // Se non tieni premuto 3 secondi, chiudi menu
+    touchTimeout = setTimeout(() => {
+      closeMenu();
+    }, 3000);
+  });
+
+  // Tocca fuori o chiudi
+  fullscreenMenu.addEventListener('touchstart', (e) => {
+    if (e.target === fullscreenMenu || e.target === closeMenuBtn) {
+      closeMenu();
+    }
+  });
+
+  closeMenuBtn.addEventListener('click', closeMenu);
+
+  // Desktop: chiudi se mouse esce dal menù fullscreen
+  fullscreenMenu.addEventListener('mouseleave', () => {
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      closeMenu();
+    }
+  });
+
+
+  // Aspetta che il DOM sia pronto
+  document.addEventListener('DOMContentLoaded', function () {
+    const toggleBtn = document.getElementById('toggleMenuBtn');
+    const menuImage = document.getElementById('menuImage');
+    const radiusRange = document.getElementById('radiusRange');
+    const heroOverlay = document.querySelector('#chi-siamo .hero-overlay');
+
+    toggleBtn.addEventListener('click', () => {
+      if (menuImage.style.display === 'none' || menuImage.style.display === '') {
+        menuImage.style.display = 'block';
+      } else {
+        menuImage.style.display = 'none';
+      }
+    });
+
+    radiusRange.addEventListener('input', () => {
+      heroOverlay.style.borderRadius = radiusRange.value + 'px';
+    });
+  });
+
+// sezione scorrimento immagini colazione
+document.addEventListener('DOMContentLoaded', () => {
+  const images = [
+    '/colazione.jpg',
+    '/caffe.jpg',
+    '/gru.jpg'
+  ];
+
+  let currentIndex = 0;
+  const imgEl = document.getElementById('colazioniImg');
+  const nextBtn = document.getElementById('nextColazione');
+  const prevBtn = document.getElementById('prevColazione');
+
+  function updateImage() {
+    imgEl.style.backgroundImage = `url('${images[currentIndex]}')`;
+  }
+
+  nextBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    currentIndex = (currentIndex + 1) % images.length;
+    updateImage();
+  });
+
+  prevBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    updateImage();
+  });
+
+  // Autoplay ogni 5 secondi
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % images.length;
+    updateImage();
+  }, 5000);
+
+  // Swipe support (touch)
+  let startX = 0;
+
+  imgEl.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+  });
+
+  imgEl.addEventListener('touchend', (e) => {
+    const endX = e.changedTouches[0].clientX;
+    const diff = endX - startX;
+
+    if (Math.abs(diff) > 30) {
+      if (diff > 0) {
+        // Swipe a destra
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+      } else {
+        // Swipe a sinistra
+        currentIndex = (currentIndex + 1) % images.length;
+      }
+      updateImage();
+    }
+  });
+
+  updateImage(); // inizializza
+});
+
+
+</script>

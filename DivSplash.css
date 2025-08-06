@@ -1,0 +1,76 @@
+/* ==========================
+   DIV SPLASH FULLSCREEN CENTRATO CON BACKGROUND VELATO
+   ========================== */
+#splash {
+  position: fixed;           
+  /* Fissa il div splash sull'intera finestra del browser, rimane fisso anche durante lo scroll */
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Estende il div su tutta l'area della finestra (copre tutto lo schermo) */
+
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Sfondo nero semi-trasparente con opacità 0.5 per creare effetto velato */
+
+  display: flex;             
+  justify-content: center;   
+  align-items: center;       
+  /* Flexbox per centrare verticalmente e orizzontalmente il contenuto (il logo) */
+
+  z-index: 2000;             
+  /* Metti il div sopra tutti gli altri elementi della pagina */
+
+  opacity: 1;                
+  /* Opacità iniziale visibile */
+
+  transition: opacity 0.8s ease;
+  /* Transizione morbida di dissolvenza quando si cambia l'opacità */
+
+  perspective: 1000px;
+  /* Imposta la profondità per gli effetti 3D degli elementi figli; fondamentale per la rotazione 3D */
+}
+
+/* ==========================
+   LOGO CHE GIRA TIPO MONETA (ROTATION 3D SULL’ASSE Y)
+   ========================== */
+#splash img {
+  max-width: 150px;          
+  max-height: 150px;
+  /* Dimensioni massime per il logo, mantiene proporzioni */
+
+  object-fit: contain;
+  /* Assicura che l'immagine non venga distorta */
+
+  animation: spinY 2s linear infinite;
+  /* Applica l'animazione di rotazione continua di 2 secondi, lineare, senza fine */
+
+  transform-style: preserve-3d;
+  /* Mantiene la profondità 3D durante le trasformazioni */
+}
+
+/* ==========================
+   ANIMAZIONE ROTAZIONE SULL’ASSE Y
+   ========================== */
+@keyframes spinY {
+  0% {
+    transform: rotateY(0deg);
+    /* Inizio animazione senza rotazione */
+  }
+  100% {
+    transform: rotateY(360deg);
+    /* Fine animazione con rotazione completa (360 gradi) sull’asse Y */
+  }
+}
+
+/* ==========================
+   NASCONDERE IL DIV SPLASH CON DISSOLVENZA
+   ========================== */
+#splash.hidden {
+  opacity: 0;
+  /* Rende il div completamente trasparente */
+
+  pointer-events: none;
+  /* Disabilita interazioni (click, hover) quando nascosto */
+}

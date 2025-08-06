@@ -1,0 +1,44 @@
+Passaggi per creare un QR code per il PDF
+1. Carica il PDF online
+Prima di tutto, devi avere il PDF hostato da qualche parte (cioè online con un URL accessibile).
+
+Puoi caricarlo su Google Drive (impostando il file come "Chiunque con il link può visualizzare" e prendendo il link di condivisione).
+
+Oppure su un tuo server o hosting.
+
+O su servizi gratuiti di file hosting (es. Dropbox, OneDrive, ecc).
+
+IMPORTANTE: Assicurati che il link sia pubblico e diretto al file PDF (non alla pagina di visualizzazione, ma il file stesso, oppure al link condivisibile che consente di scaricarlo).
+
+2. Genera il QR code
+Ci sono vari siti gratuiti che generano QR code semplicemente incollando l'URL del PDF:
+
+https://www.qr-code-generator.com/
+
+https://www.qrcode-monkey.com/
+
+https://goqr.me/
+
+Basta:
+
+Incollare l’URL del PDF
+
+Generare il QR code
+
+Scaricare l’immagine PNG/SVG del QR code
+
+3. Inserisci il QR code nella tua sezione Menù
+Nell’index.html, nella sezione #menu, puoi aggiungere l’immagine del QR code con un testo di invito, tipo:
+
+html
+Copia
+Modifica
+<section id="menu">
+  <h2>Il nostro Menù</h2>
+  <p>Scansiona il QR code per scaricare il menù completo in PDF</p>
+  <img src="path-to-your-qr-code.png" alt="QR code per scaricare il menù PDF" style="max-width:200px; cursor:pointer;" onclick="window.open('link-al-pdf.pdf', '_blank')" />
+</section>
+Sostituisci path-to-your-qr-code.png con il percorso dell’immagine QR code che hai scaricato e messo nel tuo progetto.
+
+Sostituisci link-al-pdf.pdf con il link pubblico al PDF.
+

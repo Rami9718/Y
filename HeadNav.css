@@ -1,0 +1,328 @@
+/* ==========================
+   RESET & BASE STYLES
+========================== */
+* {
+  margin: 0; /* Rimuove margini predefiniti da tutti gli elementi */
+  padding: 0; /* Rimuove padding predefiniti da tutti gli elementi */
+  box-sizing: border-box; /* Include padding e border nelle dimensioni */
+}
+
+html {
+  scroll-behavior: smooth; /* Scorrimento fluido per link interni */
+}
+
+body {
+  font-family: 'Inter', sans-serif; /* Font base */
+  line-height: 1.6; /* Altezza linea leggibile */
+  background-color: #fff; /* Sfondo bianco */
+  color: #111; /* Testo quasi nero */
+}
+
+/* ==========================
+   HEADER STYLES
+========================== */
+.dark-header {
+  background-color: #111; /* Sfondo scuro */
+  color: #fff; /* Testo bianco */
+  padding: 1rem 2rem; /* Spaziatura interna */
+  position: sticky; /* Header fisso in alto durante lo scroll */
+  top: 0;
+  z-index: 999; /* Sopra altri elementi */
+  display: flex; /* Allinea logo e menu orizzontalmente */
+  align-items: center; /* Centra verticalmente */
+  justify-content: space-between; /* Spazio tra logo e menu */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5); /* Ombra leggera */
+  border-radius: 10px; /* Angoli arrotondati */
+  margin: 30px auto 0 auto; /* Margine sopra e centrato orizzontalmente */
+  max-width: auto; /* Larghezza automatica */
+}
+
+/* ==========================
+   LOGO
+========================== */
+.logo {
+  display: flex; /* Logo in riga */
+  align-items: center; /* Verticalmente centrato */
+  gap: 10px; /* Spazio tra elementi logo */
+}
+
+.logo img {
+  height: 50px; /* Altezza fissa immagine logo */
+}
+
+/* ==========================
+   FONT PERSONALIZZATO
+========================== */
+@font-face {
+  font-family: 'Inter';
+  src: url('fonts/static/test.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('fonts/static/test.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ==========================
+   NAVBAR BASE
+========================== */
+nav {
+  /* Nascondiamo il menu mobile di default (serve per popup) */
+  position: fixed; /* Posizione fissa per popup */
+  top: 0; /* Allineato in alto */
+  right: -300px; /* Spostato fuori dallo schermo a destra */
+  height: 100vh; /* Altezza schermo intero */
+  width: 280px; /* Larghezza popup menu */
+  background: #111; /* Sfondo scuro */
+  padding: 2rem 1rem; /* Padding interno */
+  display: flex; /* Flex per colonna */
+  flex-direction: column; /* Colonna verticale */
+  gap: 20px; /* Spazio tra link */
+  box-shadow: -4px 0 8px rgba(0,0,0,0.5); /* Ombra lato sinistro popup */
+  transition: right 0.3s ease; /* Animazione apertura/chiusura */
+  z-index: 1000; /* Sopra header */
+}
+
+/* Classe attiva per mostrare menu a destra */
+nav.nav-open {
+  right: 0; /* Sposta il menu dentro lo schermo */
+}
+
+/* ==========================
+   MENU HAMBURGER (☰)
+========================== */
+/* ================================
+   HAMBURGER ICON
+   ================================ */
+#menuButton {
+  background: none;           /* Nessuno sfondo per il bottone */
+  border: none;               /* Nessun bordo */
+  cursor: pointer;            /* Cambia cursore in mano al passaggio */
+  display: block;             /* Visualizza come blocco */
+  z-index: 1100;              /* Sopra quasi tutti gli elementi */
+  position: relative;         /* Posizione relativa per riferimenti interni */
+  width: 30px;                /* Larghezza bottone */
+  height: 22px;               /* Altezza bottone */
+}
+
+/* Le 3 linee dell'hamburger come span */
+#menuButton span {
+  background: white;          /* Colore bianco per le linee */
+  display: block;             /* Blocchi impilati verticalmente */
+  height: 3px;                /* Altezza linea */
+  width: 100%;                /* Larghezza linea piena bottone */
+  border-radius: 2px;         /* Angoli leggermente arrotondati */
+  margin: 5px 0;              /* Spaziatura verticale tra le linee */
+  transition: 0.4s ease;      /* Transizione fluida per trasformazioni */
+}
+
+/* Quando il bottone è attivo (menu aperto) */
+/* Prima linea ruota 45 gradi e si sposta per formare la X */
+#menuButton.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+/* Seconda linea scompare */
+#menuButton.active span:nth-child(2) {
+  opacity: 0;
+}
+
+/* Terza linea ruota -45 gradi e si sposta per formare la X */
+#menuButton.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Bottone chiudi dentro menu */
+#closeButton {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  align-self: flex-end; /* Allineato a destra */
+  cursor: pointer;
+}
+
+
+
+/* ==========================
+   LINK NAV (desktop e mobile)
+========================== */
+.desktop-nav {
+  display: flex; /* Sempre visibile su desktop */
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  gap: 32px;
+  font-size: 1.1rem;
+  letter-spacing: 0.03em;
+}
+
+.desktop-nav a,
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 12px;
+  transition: color 0.3s ease;
+}
+
+.desktop-nav a:hover,
+.desktop-nav a:focus,
+nav a:hover,
+nav a:focus {
+  color: #f39c12; /* Colore hover/focus */
+  outline: none;
+}
+
+/* Stile base menu mobile popup (nascosto) */
+
+
+/* ================================
+   MENU MOBILE OVERLAY
+   ================================ */
+
+   /* ================================
+   MENU MOBILE POPUP QUADRATO
+   ================================ */
+
+   /* Menu nascosto inizialmente sopra lo schermo */
+#mobileNav {
+  position: fixed;               /* Posiziona il popup in modo fisso rispetto alla finestra del browser */
+  top: 50%;                     /* Posiziona il popup verticalmente al 50% dell'altezza della finestra */
+  right: 20px;                  /* Distanza di 20px dal bordo destro della finestra (vicino al menu hamburger) */
+  left: auto;                   /* Resetta il valore di left per evitare conflitti con right */
+  width: 350px;                 /* Larghezza fissa di 350px per contenere comodamente i link */
+  height: auto;                 /* Altezza automatica in base al contenuto */
+  max-height: 90vh;             /* Altezza massima al 90% dell'altezza della finestra per evitare overflow */
+  padding: 1rem 2rem;           /* Spaziatura interna: 1rem sopra e sotto, 2rem a destra e sinistra */
+  background: #111;             /* Sfondo scuro, stesso colore dell’header */
+  border-radius: 16px;          /* Angoli arrotondati per un effetto moderno e morbido */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6); /* Ombra nera sfumata per dare profondità e far risaltare il popup */
+  display: flex;                /* Usa Flexbox per il layout interno */
+  flex-direction: column;       /* Organizza i link in colonna verticale */
+  justify-content: center;      /* Centra verticalmente i contenuti all'interno del popup */
+  align-items: center;          /* Centra orizzontalmente i contenuti */
+  gap: 1.5rem;                  /* Spazio verticale tra i link per leggibilità */
+
+  /* Sposta il popup indietro di metà altezza per centrarlo verticalmente rispetto alla finestra */
+  transform: translateY(-50%) scale(0.8);
+
+  opacity: 0;                   /* Nasconde il popup inizialmente */
+  pointer-events: none;         /* Disabilita interazione quando nascosto */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Anima cambi di opacità e trasformazioni (scala e posizione) */
+  overflow-y: auto;             /* Abilita lo scroll verticale se il contenuto supera l'altezza massima */
+  z-index: 1000;                /* Assicura che il popup sia sopra altri elementi della pagina */
+}
+
+#mobileNav.nav-open {
+  opacity: 1;                  /* Rende visibile il popup quando la classe nav-open è attiva */
+  transform: translateY(-50%) scale(1); /* Riporta il popup alla dimensione originale e mantiene centrato verticalmente */
+  pointer-events: auto;        /* Riabilita l’interazione con il popup */
+}
+
+
+
+
+/* ================================
+   STILE LINK DEL MENU
+   ================================ */
+
+/* ================================
+   VOCI MENU CON ENTRATA SCENOGRAFICA
+   ================================ */
+#mobileNav a {
+  color: white;              /* Testo bianco */
+  font-size: 1.3rem;         /* Dimensione leggibile */
+  font-weight: bold;         /* Testo in grassetto */
+  text-decoration: none;     /* Nessuna sottolineatura */
+  text-align: center;        /* Testo centrato */
+  position: relative;        /* Per eventuali elementi posizionati */
+  padding-bottom: 0.4rem;    /* Spazio sotto il testo */
+  opacity: 0;                /* Inizialmente invisibili */
+  transform: translateY(15px); /* Spostati leggermente verso il basso */
+  animation: fadeInUp 0.4s ease forwards; /* Animazione di entrata */
+}
+
+/* Ritardi progressivi per ogni link per effetto a cascata */
+#mobileNav.nav-open a:nth-child(2) { animation-delay: 0.1s; }
+#mobileNav.nav-open a:nth-child(3) { animation-delay: 0.2s; }
+#mobileNav.nav-open a:nth-child(4) { animation-delay: 0.3s; }
+#mobileNav.nav-open a:nth-child(5) { animation-delay: 0.4s; }
+#mobileNav.nav-open a:nth-child(6) { animation-delay: 0.5s; }
+
+/* Animazione fade + slide verso l'alto */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;               /* Opacità finale */
+    transform: translateY(0); /* Posizione finale */
+  }
+}
+
+/* ================================
+   LINEA DORATA CON GLITTER
+   ================================ */
+#mobileNav a::after {
+  content: "";                 /* Elemento decorativo */
+  display: block;              /* Blocco */
+  height: 3px;                 /* Altezza linea */
+  width: 80px;                 /* Larghezza linea */
+  margin: 0.3rem auto 0 auto;  /* Spazio sopra e centratura orizzontale */
+  background: linear-gradient(90deg, gold, #ffd700, gold); /* Gradiente dorato */
+  box-shadow:                  /* Bagliori per effetto glitter */
+    0 0 5px gold,
+    0 0 10px #ffeb3b,
+    0 0 15px gold;
+  border-radius: 2px;          /* Angoli arrotondati linea */
+  animation: glitter 2s linear infinite; /* Animazione movimento luce */
+  background-size: 200% auto;  /* Doppia larghezza per movimento */
+}
+
+/* Animazione glitter che sposta il gradiente */
+@keyframes glitter {
+  0% { background-position: 0 0; }
+  50% { background-position: 200% 0; }
+  100% { background-position: 0 0; }
+}
+
+/* ================================
+   RESPONSIVE
+   ================================ */
+@media (min-width: 769px) {
+  #menuButton { display: none; }  /* Nascondi hamburger su desktop */
+  #mobileNav { display: none; }   /* Nascondi menu popup su desktop */
+}
+
+
+
+
+@media (min-width: 769px) {
+  nav {
+    position: static; /* Menu normale */
+    height: auto;
+    width: auto;
+    background: transparent; /* Sfondo trasparente */
+    flex-direction: row; /* Menu in orizzontale */
+    padding: 0; /* Rimuove padding */
+    box-shadow: none; /* Rimuove ombra */
+    right: auto; /* Reset posizione */
+    transition: none; /* Nessuna animazione */
+    display: flex !important; /* Mostra menu sempre */
+  }
+  
+  #menuButton {
+    display: none; /* Nasconde bottone hamburger su desktop */
+  }
+  
+  #closeButton {
+    display: none; /* Nasconde tasto chiudi su desktop */
+  }
+
+  /* Nascondi popup mobile su desktop */
+  #mobileNav {
+    display: none !important;
+  }
+}

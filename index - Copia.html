@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bar</title>
+  <link rel="stylesheet" href="stile.css" />
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" /> -->
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER + NAVIGAZIONE
+============================================================ -->
+<header class="dark-header">
+  <div class="header-content">
+    <div class="logo">
+      <img src="logo.png" alt="Logo Bar" />
+      <h1>Bar</h1>
+    </div>
+
+    <nav class="desktop-nav">
+      <a href="#menu">Menù</a>
+      <a href="#chi-siamo">Chi siamo</a>
+      <a href="#galleria">Galleria</a>
+      <a href="#prenota">Prenota</a>
+      <a href="#contatti">Contatti</a>
+    </nav>
+
+    <button id="menuButton" aria-label="Apri menù" aria-haspopup="true" aria-expanded="false">☰</button>
+  </div>
+
+  <!-- Menù fullscreen rimane invariato -->
+</header>
+
+
+  <!-- Menù fullscreen -->
+  <div id="fullscreenMenu" aria-hidden="true">
+    <button id="closeMenu" aria-label="Chiudi menù">×</button>
+    <ul>
+      <li><a href="#menu">Menù</a></li>
+      <li><a href="#chi-siamo">Chi siamo</a></li>
+      <li><a href="#galleria">Galleria</a></li>
+      <li><a href="#prenota">Prenota</a></li>
+      <li><a href="#contatti">Contatti</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- ============================================================
+     HERO SPLIT: CHI SIAMO A SINISTRA + SPECIALITÀ A DESTRA
+============================================================ -->
+<section class="hero-split">
+  <!-- CHI SIAMO (SINISTRA) -->
+  <div class="hero-section small-left">
+    <div class="hero-overlay">
+      <div class="hero-text">
+        <h2 class="fade-in">Chi siamo</h2>
+        <p class="fade-in delay-1">
+          Bar Bella Vita è il tuo rifugio quotidiano. Tra caffè artigianali, drink creativi e piatti freschi, ogni momento è un’occasione per gustare la vita.
+        </p>
+ <h2>Il nostro Menù</h2>
+  <div class="menu-preview" onclick="toggleMenu()">
+    <p>Clicca qui per vedere il QR code </p>
+    <div class="menu-img" id="menuImage">
+   <p>Scansiona il QR code per scaricare il menù completo in PDF</p>
+  <img src="path-to-your-qr-code.png" alt="QR code per scaricare il menù PDF" style="max-width:200px; cursor:pointer;" onclick="window.open('link-al-pdf.pdf', '_blank')" />
+  </div>
+  </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPECIALITÀ (DESTRA) -->
+ <!-- <div class="specialita-destra fade-in">
+    <h2>Le nostre Specialità</h2>
+    <div class="specialita-colonne">
+      <a href="#colazioni" class="menu-box">
+        <div class="menu-img" style="background-image: url('colazione.jpg');"></div>
+        <h3>Colazioni</h3>
+      </a>
+      <a href="#pranzi" class="menu-box">
+        <div class="menu-img" style="background-image: url('aperitivo.jpg');"></div>
+        <h3>Pranzi</h3>
+      </a>
+      <a href="#cocktail" class="menu-box">
+        <div class="menu-img" style="background-image: url('Cocktails.jpg');"></div>
+        <h3>Cocktail Bar</h3>
+      </a>
+    </div>
+  </div>-->
+</section>
+
+
+<!-- ============================================================
+     SEZIONE MENU CON 3 COLONNE
+============================================================ -->
+
+<section class="menu-3-colonne">
+  <h2>Scopri le nostre specialità</h2>
+   <div class="menu-grid">
+    <a href="#colazioni" class="menu-box">
+      <div class="menu-img" style="background-image: url('img/colazione.jpg');"></div>
+      <h3>Colazioni</h3>
+    </a>
+    <a href="#pranzi" class="menu-box">
+      <div class="menu-img" style="background-image: url('img/pranzo.jpg');"></div>
+      <h3>Pranzi</h3>
+    </a>
+    <a href="#cocktail" class="menu-box">
+      <div class="menu-img" style="background-image: url('img/cocktail.jpg');"></div>
+      <h3>Cocktail Bar</h3>
+    </a>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SEZIONE MENU CON QR CODE
+============================================================ -->
+<section id="menu">
+  <h2>Il nostro Menù</h2>
+  <div class="menu-preview" onclick="toggleMenu()">
+    <p>Clicca qui per vedere il QR code </p>
+    <div class="menu-img" id="menuImage">
+   <p>Scansiona il QR code per scaricare il menù completo in PDF</p>
+  <img src="path-to-your-qr-code.png" alt="QR code per scaricare il menù PDF" style="max-width:200px; cursor:pointer;" onclick="window.open('link-al-pdf.pdf', '_blank')" />
+  </div>
+  </div>
+</section>
+
+  <!-- 
+<section id="menu">
+  <h2>Il nostro Menù</h2>
+  <div class="menu-preview" onclick="toggleMenu()">
+    <p>Clicca qui per vedere il menù completo in anteprima</p>
+    <div class="menu-img" id="menuImage">
+      <img src="https://source.unsplash.com/800x600/?menu,restaurant" alt="Menù del bar" />
+    </div>
+  </div>
+</section> -->
+
+<!-- ============================================================
+     SEZIONE GALLERIA FOTOGRAFICA
+============================================================ -->
+<section id="galleria">
+  <h2 style="text-align: center;">Galleria Fotografica</h2>
+  <div class="slider-wrapper">
+    <button class="arrow left" onclick="scrollSlider(-1)"><i class="fas fa-chevron-left"></i></button>
+    <div class="slider-track" id="sliderTrack">
+      <!-- immagini duplicate per loop -->
+      <img src="caffe.jpg" alt="caffè" />
+      <img src="bancone.jpg" alt="bar" />
+      <img src="colazione.jpg" alt="colazione" />
+      <img src="Cocktails.jpg" alt="cocktail" />
+      <img src="Aperitivo.jpg" alt="aperitivo" />
+      <img src="esterno.jpg" alt="esterno" />
+      <img src="gru.jpg" alt="gruppo" />
+    </div>
+    <button class="arrow right" onclick="scrollSlider(1)"><i class="fas fa-chevron-right"></i></button>
+  </div>
+</section>
+
+<!-- ============================================================
+     SEZIONE PRENOTAZIONI
+============================================================ -->
+<section id="prenota">
+  <h2>Prenota un Tavolo</h2>
+  <form>
+    <div class="form-group">
+      <input type="text" placeholder="Nome completo" required />
+    </div>
+    <div class="form-group">
+      <input type="email" placeholder="Email" required />
+    </div>
+    <div class="form-group">
+      <input type="tel" placeholder="Telefono" required />
+    </div>
+    <div class="form-group">
+      <textarea placeholder="Note o richieste speciali..." rows="4"></textarea>
+    </div>
+    <button type="submit">Invia</button>
+  </form>
+</section>
+
+
+<!-- ============================================================
+     SEZIONE CONTATTI + SOCIAL + MAPPA
+============================================================ -->
+<section id="contatti">
+  <h2>Contatti</h2>
+  <p>📍 Via Roma 123, Milano</p>
+  <p>📞 <a href="tel:+390212345678">+39 02 12345678</a></p>
+  <p>📧 <a href="mailto:info@barbellavita.it">info@barbellavita.it</a></p>
+
+  <h3>Dove siamo</h3>
+  <iframe src="https://www.google.com/maps?q=Via+Roma+123,+Milano&output=embed" allowfullscreen="" loading="lazy"></iframe>
+
+  <h3>Seguici</h3>
+  <div class="social-icons">
+    <a href="https://www.instagram.com/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.facebook.com/" target="_blank" rel="noopener"><i class="fab fa-facebook"></i></a>
+    <a href="https://wa.me/391234567890" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer>
+  <p>&copy; 2025 Bar Bella Vita – Tutti i diritti riservati</p>
+</footer>
+
+<!-- ============================================================
+     SCRIPT FUNZIONALITÀ JS
+============================================================ -->
+<script>
+  // Toggle anteprima menu
+  function toggleMenu() {
+    const menuImg = document.getElementById('menuImage');
+    menuImg.style.display = menuImg.style.display === 'block' ? 'none' : 'block';
+  }
+
+  // Galleria slideshow infinito
+  const slider = document.getElementById('sliderTrack');
+  let scrollSpeed = 1;
+  let isHovered = false;
+
+  function autoScroll() {
+    if (!isHovered) {
+      slider.scrollLeft += scrollSpeed;
+      if (slider.scrollLeft >= slider.scrollWidth / 2) {
+        slider.scrollLeft = 0;
+      }
+    }
+  }
+
+  function scrollSlider(direction) {
+    slider.scrollLeft += direction * 300;
+  }
+
+  slider.addEventListener('mouseenter', () => isHovered = true);
+  slider.addEventListener('mouseleave', () => isHovered = false);
+
+  setInterval(autoScroll, 20);
+
+  // Menù fullscreen gestione apertura/chiusura
+  const menuButton = document.getElementById('menuButton');
+  const fullscreenMenu = document.getElementById('fullscreenMenu');
+  const closeMenuBtn = document.getElementById('closeMenu');
+
+  let touchTimeout;
+
+  function openMenu() {
+    fullscreenMenu.classList.add('active');
+    fullscreenMenu.setAttribute('aria-hidden', 'false');
+    menuButton.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeMenu() {
+    fullscreenMenu.classList.remove('active');
+    fullscreenMenu.setAttribute('aria-hidden', 'true');
+    menuButton.setAttribute('aria-expanded', 'false');
+    clearTimeout(touchTimeout);
+  }
+
+  // Mobile: touchstart e tieni premuto per aprire
+  menuButton.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    openMenu();
+
+    // Se non tieni premuto 3 secondi, chiudi menu
+    touchTimeout = setTimeout(() => {
+      closeMenu();
+    }, 3000);
+  });
+
+  // Tocca fuori o chiudi
+  fullscreenMenu.addEventListener('touchstart', (e) => {
+    if (e.target === fullscreenMenu || e.target === closeMenuBtn) {
+      closeMenu();
+    }
+  });
+
+  closeMenuBtn.addEventListener('click', closeMenu);
+
+  // Desktop: chiudi se mouse esce dal menù fullscreen
+  fullscreenMenu.addEventListener('mouseleave', () => {
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      closeMenu();
+    }
+  });
+</script>
+
+</body>
+</html>
